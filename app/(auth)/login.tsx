@@ -1,59 +1,69 @@
+import logo from "@/assets/images/logo_food_app.png";
+import LoginForm from "@/components/login-form";
 import { SocialButtons } from '@/components/SocialButtons';
+import { Image } from 'expo-image';
 import { useRouter } from 'expo-router';
 import React from 'react';
-import { StatusBar, Text, TouchableOpacity, View } from 'react-native';
+import { ScrollView, StatusBar, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function LoginScreen() {
   const router = useRouter();
 
   return (
-    <SafeAreaView className="flex-1 bg-white">
-      <StatusBar barStyle="dark-content" />
+    <View className="flex-1 bg-primary">
+      <StatusBar barStyle="light-content" />
+      <SafeAreaView className="flex-1">
+        <ScrollView contentContainerStyle={{ flexGrow: 1 }} keyboardShouldPersistTaps="handled">
+          
+          <View className="flex-row justify-between items-center px-6 py-2">
+            <TouchableOpacity />
+            <View className="flex-row items-center">
+              <Text className="text-white/80 mr-2">Chưa có tài khoản?</Text>
+              <TouchableOpacity onPress={() => router.push('/(auth)/register' as any)}>
+                <Text className="text-white font-bold underline">Đăng ký</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
 
-      {/* 1. Phần Logo và Tên FoodVK */}
-      <View className="flex-1 justify-center items-center px-6">
-        {/* Placeholder cho Logo (Dương và Ân có thể nhét SVG/Image của bạn vào đây) */}
-        <View className="w-28 h-28 bg-slate-100 rounded-full mb-6 justify-center items-center">
-          <Text className="text-slate-400">Logo</Text>
-        </View>
-        
-        <Text className="text-5xl font-extrabold text-primary">
-          FoodVK
-        </Text>
-      </View>
+          <View className="items-center py-4">
+            <View className="w-24 h-24 bg-white/20 rounded-3xl justify-center items-center backdrop-blur-md">
+              <Image
+                source={logo}
+                style={{ width: 70, height: 70 }}
+                contentFit="contain"
+              />
+            </View>
+            <Text className="text-4xl font-black text-white mt-4 tracking-tighter">
+              FoodVK
+            </Text>
+          </View>
 
-      {/* 2. Phần Các Nút Bấm Điều hướng */}
-      <View className="p-6 pb-12 space-y-5">
-        
-        {/* Nút Đăng nhập */}
-        <TouchableOpacity 
-          onPress={() => router.replace('/home')}
-          className="w-full h-14 border border-primary rounded-full justify-center items-center active:opacity-70"
-        >
-          <Text className="text-xl font-bold text-primary">
-            Đăng nhập
-          </Text>
-        </TouchableOpacity>
+          {/* 2. Main Login Card */}
+          <View className="flex-1 bg-white rounded-t-[40px] px-8 pt-10 shadow-2xl">
+            <View className="items-center mb-8">
+              <Text className="text-3xl font-bold text-slate-800">Chào quay lại!</Text>
+              <Text className="text-slate-400 mt-1">Nhập thông tin để khám phá Vĩnh Khánh</Text>
+            </View>
 
-        {/* Nút Facebook & Google tách riêng */}
-        <SocialButtons />
+            {/* Gọi Component Form đã tách */}
+            <LoginForm />
 
-        <View className="flex-row justify-center items-center">
-          <Text className="text-base text-slate-500 font-medium">hoặc</Text>
-        </View>
+            {/* Social Login Section */}
+            <View className="mt-8">
+              <View className="flex-row items-center justify-center gap-x-4 mb-6">
+                <View className="h-[1px] flex-1 bg-slate-100" />
+                <Text className="text-slate-400 font-medium text-sm uppercase">Hoặc đăng nhập bằng</Text>
+                <View className="h-[1px] flex-1 bg-slate-100" />
+              </View>
+              
+              <SocialButtons />
+            </View>
 
-        {/* Nút Tạo tài khoản */}
-        <TouchableOpacity 
-          onPress={() => router.push('/(auth)/register' as any)}
-          className="w-full h-14 bg-primary rounded-full justify-center items-center shadow-lg active:opacity-70"
-        >
-          <Text className="text-xl font-bold text-white">
-            Tạo tài khoản mới
-          </Text>
-        </TouchableOpacity>
-
-      </View>
-    </SafeAreaView>
+            <View className="h-10" />
+          </View>
+        </ScrollView>
+      </SafeAreaView>
+    </View>
   );
 }

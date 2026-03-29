@@ -1,109 +1,97 @@
 import { useRouter } from 'expo-router';
-import React, { useRef, useState } from 'react';
-import { FlatList, Image, Text, TouchableOpacity, useWindowDimensions, View } from 'react-native';
-const ONBOARDING_DATA = [
-  {
-    id: '1',
-    title: 'Khám Phá Đặc Sản',
-    description: 'Tìm kiếm những món ăn đường phố ngon nhất Sài Gòn chỉ với một chạm.',
-    image: 'https://images.unsplash.com/photo-1563245372-f21724e3856d?q=80&w=500', // Bạn thay bằng ảnh local sau nhé
-  },
-  {
-    id: '2',
-    title: 'Lên Kế Hoạch Tour',
-    description: 'Tạo lịch trình tham quan các địa điểm ẩm thực tối ưu nhất cho bạn và bạn bè.',
-    image: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=500',
-  },
-  {
-    id: '3',
-    title: 'Thưởng Thức & Chia Sẻ',
-    description: 'Lưu lại những kỉ niệm ăn uống và chia sẻ đánh giá với cộng đồng ẩm thực.',
-    image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=500',
-  },
-];
+import React, { useState } from 'react';
+import { Image, Text, TouchableOpacity, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+
 export default function OnboardingScreen() {
-  const { width } = useWindowDimensions();
   const router = useRouter();
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const flatListRef = useRef<FlatList>(null);
+  const [step, setStep] = useState(1); // Quản lý 3 bước: 1, 2, 3
 
-  // Xử lý khi người dùng vuốt ngang
-  const onViewableItemsChanged = useRef(({ viewableItems }: any) => {
-    if (viewableItems.length > 0) {
-      setCurrentIndex(viewableItems[0].index);
-    }
-  }).current;
-
-  // Bấm nút Tiếp tục hoặc Bắt đầu
-  const handleNext = () => {
-    if (currentIndex < ONBOARDING_DATA.length - 1) {
-      flatListRef.current?.scrollToIndex({ index: currentIndex + 1 });
+  const handleNext = async () => {
+    if (step < 3) {
+      setStep(step + 1);
     } else {
+      router.replace('/(auth)/login');
     }
   };
 
+  // Nội dung cho từng bước
+  const onboardingData = {
+    1: {
+      title: "Thiên Đường Ốc",
+      description: "Khám phá hàng trăm quán ốc nổi tiếng dọc phố Vĩnh Khánh, từ ốc bình dân đến hải sản cao cấp.",
+      image: "https://cdn-icons-png.flaticon.com/512/3321/3321473.png", // Bạn thay bằng ảnh ốc/biển
+    },
+    2: {
+      title: "Bản Đồ Ẩm Thực",
+      description: "Dễ dàng tìm kiếm vị trí các quán ăn ngon nhất Quận 4 với chỉ dẫn đường đi chính xác.",
+      image: "https://cdn-icons-png.flaticon.com/512/854/854878.png", // Bạn thay bằng ảnh map
+    },
+    3: {
+      title: "Trải Nghiệm FoodVK",
+      description: "Đặt bàn trước, săn deal độc quyền và chia sẻ cảm nhận ẩm thực cùng cộng đồng Foodie.",
+      image: "https://cdn-icons-png.flaticon.com/512/3170/3170733.png", // Bạn thay bằng ảnh logo app
+    }
+  };
+
+  const currentData = onboardingData[step as keyof typeof onboardingData];
+
   return (
-    <View className="flex-1 bg-white">
-      {/* 1. Nút Bỏ qua (Skip) */}
-      <View className="absolute top-12 right-6 z-10">
-        <TouchableOpacity>
-          <Text className="text-slate-400 font-semibold text-base">Bỏ qua</Text>
-        </TouchableOpacity>
-      </View>
+    <SafeAreaView className="flex-1 bg-white p-6">
+      {/* Nút Bỏ qua */}
+      <TouchableOpacity 
+        onPress={() => router.replace('/(auth)/login')} 
+        className="items-end"
+      >
+        <Text className="text-slate-400 font-bold text-lg">Bỏ qua</Text>
+      </TouchableOpacity>
 
-      {/* 2. Danh sách Slide vuốt ngang */}
-      <FlatList
-        ref={flatListRef}
-        data={ONBOARDING_DATA}
-        horizontal
-        pagingEnabled // Ép vuốt từng trang khít màn hình
-        showsHorizontalScrollIndicator={false}
-        onViewableItemsChanged={onViewableItemsChanged}
-        viewabilityConfig={{ viewAreaCoveragePercentThreshold: 50 }}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <View style={{ width }} className="flex-1 justify-center items-center p-6">
-            <Image 
-              source={{ uri: item.image }} 
-              className="w-72 h-72 rounded-3xl mb-12"
-              resizeMode="cover"
-              style={{ width: 300, height: 300, borderRadius: 24, marginBottom: 48 }}
-            />
-            <Text className="text-2xl font-extrabold text-slate-800 text-center mb-4">
-              {item.title}
-            </Text>
-            <Text className="text-base text-slate-500 text-center px-4 leading-6">
-              {item.description}
-            </Text>
-          </View>
-        )}
-      />
-
-      {/* 3. Đáy màn hình: Dấu chấm trang (Indicators) + Nút bấm */}
-      <View className="p-6 mb-8 flex-row justify-between items-center">
-        
-        {/* Các dấu chấm trang */}
-        <View className="flex-row space-x-2">
-          {ONBOARDING_DATA.map((_, index) => (
-            <View 
-              key={index}
-              className={`h-2 rounded-full transition-all duration-300 ${
-                index === currentIndex ? 'w-8 bg-orange-500' : 'w-2 bg-slate-300'
-              }`}
-            />
-          ))}
+      <View className="flex-1 justify-center items-center">
+        {/* Hình ảnh minh họa */}
+        <View className="w-72 h-72 bg-slate-50 rounded-full mb-10 justify-center items-center border border-slate-100 shadow-sm">
+          <Image 
+            source={{ uri: currentData.image }}
+            className="w-48 h-48"
+            resizeMode="contain"
+          />
         </View>
 
-        {/* Nút bấm chuyển trang */}
+        {/* Tiêu đề & Nội dung */}
+        <Text className="text-4xl font-black text-slate-800 text-center mb-4 tracking-tight">
+          {currentData.title}
+        </Text>
+        <Text className="text-lg text-slate-500 text-center px-6 leading-7">
+          {currentData.description}
+        </Text>
+
+        {/* Thanh phân trang (Pagination Dots) */}
+        <View className="flex-row mt-12 items-center justify-center">
+          <View className={`h-2 rounded-full mx-1 transition-all ${step === 1 ? 'bg-primary w-8' : 'bg-slate-200 w-2'}`} />
+          <View className={`h-2 rounded-full mx-1 transition-all ${step === 2 ? 'bg-primary w-8' : 'bg-slate-200 w-2'}`} />
+          <View className={`h-2 rounded-full mx-1 transition-all ${step === 3 ? 'bg-primary w-8' : 'bg-slate-200 w-2'}`} />
+        </View>
+      </View>
+
+      {/* Nút Điều hướng đáy */}
+      <View className="flex-row space-x-4">
+        {step > 1 && (
+          <TouchableOpacity 
+            onPress={() => setStep(step - 1)}
+            className="flex-1 h-16 border-2 border-slate-100 rounded-2xl justify-center items-center"
+          >
+            <Text className="text-xl font-bold text-slate-400">Quay lại</Text>
+          </TouchableOpacity>
+        )}
+        
         <TouchableOpacity 
           onPress={handleNext}
-          className="bg-orange-500 py-3 px-8 rounded-full shadow-lg shadow-orange-300"
+          className="flex-1 h-16 bg-primary rounded-2xl justify-center items-center shadow-lg shadow-primary/30"
         >
-          <Text className="text-white font-bold text-base">
-            {currentIndex === ONBOARDING_DATA.length - 1 ? 'Bắt đầu' : 'Tiếp tục'}
+          <Text className="text-xl font-bold text-white">
+            {step === 3 ? "Bắt đầu ngay" : "Tiếp theo"}
           </Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </SafeAreaView>
   );
 }

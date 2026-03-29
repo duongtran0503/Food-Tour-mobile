@@ -4,7 +4,7 @@ import { Image, TouchableOpacity, View } from 'react-native';
 
 export const SocialButtons = () => {
   return (
-    <View className="flex-row justify-center items-center space-x-6">
+    <View className="flex-row justify-center items-center space-x-6 gap-x-4">
       {/* Nút Facebook */}
       <TouchableOpacity 
         className="w-16 h-16 bg-[#1877F2] rounded-3xl justify-center items-center shadow-lg active:opacity-70"
