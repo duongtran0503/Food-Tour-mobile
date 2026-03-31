@@ -24,6 +24,17 @@ export default function RootLayout() {
               title: 'FoodVK',
             }}
           />
+          <Drawer.Screen
+           name="tour/[id]"
+
+            options={{  drawerItemStyle: { display: 'none' },swipeEnabled: false, }}
+          />
+            <Drawer.Screen
+           name="restaurant/[id]"
+
+            options={{  drawerItemStyle: { display: 'none' },swipeEnabled: false, }}
+          />
+
 
           <Drawer.Screen
             name="(auth)"

@@ -1,11 +1,16 @@
+import FoodTourCard from '@/components/food-tour-card';
 import { BigFoodCard, SmallFoodCard } from '@/components/home-component';
+import RestaurantCard from '@/components/restaurant-card';
 import SearchBar from '@/components/search-bar';
+import { MOCK_RESTAURANTS, VINK_TOURS } from '@/constants/data-demo';
 import { Ionicons } from '@expo/vector-icons';
+import { useRouter } from 'expo-router';
 import React from 'react';
 import { ScrollView, StatusBar, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function HomeScreen() {
+  const router = useRouter()
   return (
     <View className="flex-1 bg-white">
       <StatusBar barStyle="default" />
@@ -68,6 +73,49 @@ export default function HomeScreen() {
               ))}
             </ScrollView>
           </View>
+
+
+           <View className="mb-8">
+            <View className="flex-row items-center py-2">
+               <Ionicons name="flame" size={24} color="#ef4444" /> 
+               <Text className="ml-2 font-bold text-lg">Danh sách chuyến đi</Text>
+              </View>
+             <ScrollView horizontal showsHorizontalScrollIndicator={false} className="pl-2">
+                 {VINK_TOURS.map((tour) => (
+                     <View key={tour.id} className="mr-4">
+                         <FoodTourCard tour={tour} />
+                     </View>
+                 ))}
+            </ScrollView>
+          </View>
+
+           <View className="mb-8">
+           <View className="flex-row items-center justify-between px-4 py-2">
+        <View className="flex-row items-center">
+          <Ionicons name="restaurant" size={22} color="#930004" /> 
+          <Text className="ml-2 font-black text-lg text-slate-900">Quán ăn nức tiếng</Text>
+        </View>
+        
+        <TouchableOpacity onPress={() => router.push("/")}>
+          <Text className="text-[#930004] font-bold text-sm">Xem tất cả</Text>
+        </TouchableOpacity>
+      </View>
+             <ScrollView horizontal showsHorizontalScrollIndicator={false} className="pl-2">
+                 {MOCK_RESTAURANTS.map((restaurant) => (
+                     <View key={restaurant.id} className="mr-2">
+                         <RestaurantCard restaurant={restaurant} />
+                     </View>
+                 ))}
+            </ScrollView>
+          </View>
+
+
+        
+              
+              
+              
+
+
 
           {/* 4. Đang khuyến mãi */}
           <View className="px-4 mb-4 flex-row justify-between items-end">

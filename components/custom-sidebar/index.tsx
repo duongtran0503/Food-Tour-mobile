@@ -55,7 +55,6 @@ export default function CustomDrawerContent(props: DrawerContentComponentProps) 
         </View>
         <Text className="text-2xl font-extrabold text-slate-950 tracking-tight">Trần Dương</Text>
         <Text className="text-sm text-slate-500 mt-1 mb-5">duong@foodvk.com</Text>
-
         {/* Nút Profile & Settings dạng pill */}
         <TouchableOpacity 
           className="bg-slate-100 px-6 py-3 rounded-full active:bg-slate-200"
