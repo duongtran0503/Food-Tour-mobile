@@ -28,7 +28,7 @@ export default function CustomTabBar() {
   };
 
   return (
-    <View className="absolute bottom-2 w-full h-[80px] bg-[#930004] flex-row shadow-2xl">
+    <View className="absolute bottom-0 w-full  h-[80px] bg-[#930004] flex-row shadow-2xl">
       {tabs.map((tab, index) => {
         const isActive = pathname.includes(tab.name);
         const isHome = index === 0;

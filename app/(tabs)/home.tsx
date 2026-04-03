@@ -16,7 +16,7 @@ export default function HomeScreen() {
       <StatusBar barStyle="default" />
       
       {/* --- PHẦN ĐỎ (HEADER) --- */}
-      <View className="bg-primary pb-20"> {/* Tăng padding bottom để làm nền cho Search Bar */}
+     <View className="bg-primary pb-12"> 
         <SafeAreaView edges={['top']}>
           {/* Logo & Cart */}
           <View className="flex-row items-center justify-between px-6 py-4">
@@ -32,19 +32,17 @@ export default function HomeScreen() {
             </TouchableOpacity>
           </View>
 
-          {/* Search Bar nằm CHÍNH XÁC ở phần đỏ */}
-          <View className="px-6 mt-2 pb-4">
-            <SearchBar/>
+          <View className="px-6 mt-2 z-50">
+            <SearchBar />
           </View>
         </SafeAreaView>
       </View>
 
       {/* --- PHẦN TRẮNG (NỘI DUNG) --- */}
-      {/* Dùng margin-top âm để đẩy phần trắng đè lên phần đỏ */}
-      <View className="flex-1 bg-white rounded-t-[40px] -mt-10 shadow-2xl overflow-hidden">
+    <View className="flex-1 bg-white rounded-t-[40px] -mt-8 shadow-2xl overflow-hidden">
         <ScrollView 
           showsVerticalScrollIndicator={false} 
-          contentContainerStyle={{ paddingBottom: 100, paddingTop: 30 }} // Tăng paddingTop để tạo khoảng cách giữa phần trắng và phần đỏ
+          contentContainerStyle={{ paddingBottom: 100, paddingTop: 20 }} 
         >
           {/* 3. Categories (Vòng tròn) */}
           <View className="mb-8">
@@ -90,13 +88,12 @@ export default function HomeScreen() {
           </View>
 
            <View className="mb-8">
-           <View className="flex-row items-center justify-between px-4 py-2">
+           <View className="flex-row items-center justify-between px-4 py-2 mb-2">
         <View className="flex-row items-center">
           <Ionicons name="restaurant" size={22} color="#930004" /> 
-          <Text className="ml-2 font-black text-lg text-slate-900">Quán ăn nức tiếng</Text>
+          <Text className="ml-2 font-black text-lg text-slate-900">Quán ăn nổi tiếng</Text>
         </View>
-        
-        <TouchableOpacity onPress={() => router.push("/")}>
+        <TouchableOpacity onPress={() => router.push("/restaurant/all")}>
           <Text className="text-[#930004] font-bold text-sm">Xem tất cả</Text>
         </TouchableOpacity>
       </View>
@@ -108,15 +105,6 @@ export default function HomeScreen() {
                  ))}
             </ScrollView>
           </View>
-
-
-        
-              
-              
-              
-
-
-
           {/* 4. Đang khuyến mãi */}
           <View className="px-4 mb-4 flex-row justify-between items-end">
             <Text className="text-xl font-extrabold text-slate-800">🔥 Đang khuyến mãi</Text>

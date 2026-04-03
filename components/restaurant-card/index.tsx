@@ -12,7 +12,7 @@ export default function RestaurantCard({ restaurant }: Props) {
 
   return (
     <TouchableOpacity 
-      onPress={() => router.push({ pathname: "/restaurant/[id]", params: { id: restaurant.id } })}
+      onPress={() => router.push({ pathname: "/restaurant/detail/[id]", params: { id: restaurant.id } })}
       className="bg-white rounded-3xl mr-2 shadow-2xl border border-slate-100 overflow-hidden w-64"
       activeOpacity={0.9}
     >

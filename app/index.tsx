@@ -1,9 +1,9 @@
 import Logo from '@/components/logo';
+import apiClient from '@/config/axios-config';
 import { useRouter } from 'expo-router';
 import React, { useEffect } from 'react';
 import { ActivityIndicator, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-
 export default function Index() {
   const router = useRouter();
 
@@ -11,7 +11,12 @@ export default function Index() {
     const timer = setTimeout(() => {
       router.replace('/(tabs)/home');
     }, 3000);
-
+     const helloApp = async () => {
+        const res = await apiClient.get("/hello");        
+        console.log("API Response:", res);
+      
+    }
+    helloApp();
     return () => clearTimeout(timer); 
   }, []);
 

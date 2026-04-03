@@ -7,9 +7,9 @@ export default function TabNavigation() {
   return (
     <Tabs
       screenOptions={{
-        headerShown: false, // Ẩn Header hệ thống để bạn tự vẽ bằng Tailwind
-        tabBarActiveTintColor: "#930004", // Màu đỏ Primary của FoodVK khi được chọn
-        tabBarInactiveTintColor: "#64748b", // Màu xám khi không được chọn
+        headerShown: false, 
+        tabBarActiveTintColor: "#930004", 
+        tabBarInactiveTintColor: "#64748b", 
         tabBarStyle: {
           height: 60,
           paddingBottom: 10,
@@ -21,6 +21,7 @@ export default function TabNavigation() {
       <Tabs.Screen
         name="index" 
         options={{
+        
           title: "Trang chủ",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="restaurant-outline" size={size} color={color} />

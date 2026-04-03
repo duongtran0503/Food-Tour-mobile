@@ -12,14 +12,25 @@
       "supportsTablet": true
     },
     "android": {
+      "permissions": [
+    "ACCESS_COARSE_LOCATION",
+    "ACCESS_FINE_LOCATION"
+  ],
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyAabNPF1D3cXDdSBgBkyfcz3jqJ3kG2kKI"
+        }
+      },
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
         "backgroundImage": "./assets/images/android-icon-background.png",
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
+     
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+       
     },
     "web": {
       "output": "static",

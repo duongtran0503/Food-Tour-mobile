@@ -6,7 +6,7 @@ import { Image, ScrollView, StatusBar, Text, TouchableOpacity, View } from 'reac
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function TourDetailScreen() {
-  const { id } = useLocalSearchParams(); 
+  const { id  } = useLocalSearchParams(); 
   const router = useRouter();
 
   const tourData = {
@@ -39,6 +39,8 @@ export default function TourDetailScreen() {
       },
     ]
   };
+
+  
 
   return (
     <View className="flex-1 bg-white">
@@ -129,7 +131,9 @@ export default function TourDetailScreen() {
 
       {/* Bottom Button */}
       <View className="absolute bottom-0 w-full p-6 bg-white/90 border-t border-slate-100">
-        <TouchableOpacity className="bg-[#930004] h-16 rounded-2xl items-center justify-center shadow-lg shadow-red-900/20">
+        <TouchableOpacity 
+        onPress={()=>router.push({ pathname: "/tour/map/[id]", params: {id:""+id } })}
+        className="bg-[#930004] h-16 rounded-2xl items-center justify-center shadow-lg shadow-red-900/20">
           <Text className="text-white font-black text-lg uppercase tracking-widest">Bắt đầu hành trình</Text>
         </TouchableOpacity>
       </View>

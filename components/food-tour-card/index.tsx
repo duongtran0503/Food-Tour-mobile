@@ -13,7 +13,7 @@ export default function FoodTourCard(props:Props) {
     const router = useRouter()
   return (
     <TouchableOpacity 
-        onPress={() => router.push({ pathname:"/tour/[id]",params:{id:props.tour.id} })}
+        onPress={() => router.push({ pathname:"/tour/detail/[id]",params:{id:props.tour.id} })}
       className="bg-white rounded-3xl mb-5 shadow-md border border-slate-100 overflow-hidden"
       activeOpacity={0.9}
     >
