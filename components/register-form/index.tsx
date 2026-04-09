@@ -2,6 +2,7 @@ import { useFormRegister } from '@/components/register-form/use-register-form';
 import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
 import { Controller } from 'react-hook-form';
+import { useTranslation } from 'react-i18next'; // 1. Import hook
 import { Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 export default function RegisterForm() {
@@ -10,12 +11,15 @@ export default function RegisterForm() {
     showPass, setShowPass, 
     showConfirmPass, setShowConfirmPass 
   } = useFormRegister();
+  const { t } = useTranslation(); // 2. Khởi tạo hàm t()
 
   return (
     <View className="gap-y-4">
       {/* Full Name Field */}
       <View>
-        <Text className="text-slate-500 font-bold ml-1 mb-2">Họ và tên</Text>
+        <Text className="text-slate-500 font-bold ml-1 mb-2">
+          {t('screens.register.full_name_label')}
+        </Text>
         <View className={`flex-row items-center bg-slate-50 border ${errors.fullName ? 'border-red-500' : 'border-slate-100'} rounded-2xl px-4 h-16`}>
           <Ionicons name="person-outline" size={20} color="#94a3b8" />
           <Controller
@@ -23,7 +27,7 @@ export default function RegisterForm() {
             name="fullName"
             render={({ field: { onChange, value } }) => (
               <TextInput 
-                placeholder="Trần Dương" 
+                placeholder={t('screens.register.full_name_placeholder')}
                 className="flex-1 ml-3 text-slate-800 font-medium" 
                 onChangeText={onChange} 
                 value={value} 
@@ -36,7 +40,9 @@ export default function RegisterForm() {
 
       {/* Email Field */}
       <View>
-        <Text className="text-slate-500 font-bold ml-1 mb-2">Email</Text>
+        <Text className="text-slate-500 font-bold ml-1 mb-2">
+          {t('screens.register.email_label')}
+        </Text>
         <View className={`flex-row items-center bg-slate-50 border ${errors.email ? 'border-red-500' : 'border-slate-100'} rounded-2xl px-4 h-16`}>
           <Ionicons name="mail-outline" size={20} color="#94a3b8" />
           <Controller
@@ -59,7 +65,9 @@ export default function RegisterForm() {
 
       {/* Password Field */}
       <View>
-        <Text className="text-slate-500 font-bold ml-1 mb-2">Mật khẩu</Text>
+        <Text className="text-slate-500 font-bold ml-1 mb-2">
+          {t('screens.register.password_label')}
+        </Text>
         <View className={`flex-row items-center bg-slate-50 border ${errors.password ? 'border-red-500' : 'border-slate-100'} rounded-2xl px-4 h-16`}>
           <Ionicons name="lock-closed-outline" size={20} color="#94a3b8" />
           <Controller
@@ -84,7 +92,9 @@ export default function RegisterForm() {
 
       {/* Confirm Password Field */}
       <View>
-        <Text className="text-slate-500 font-bold ml-1 mb-2">Xác nhận mật khẩu</Text>
+        <Text className="text-slate-500 font-bold ml-1 mb-2">
+          {t('screens.register.confirm_password_label')}
+        </Text>
         <View className={`flex-row items-center bg-slate-50 border ${errors.confirmPassword ? 'border-red-500' : 'border-slate-100'} rounded-2xl px-4 h-16`}>
           <Ionicons name="shield-checkmark-outline" size={20} color="#94a3b8" />
           <Controller
@@ -112,7 +122,9 @@ export default function RegisterForm() {
         onPress={handleSubmit(onSubmit)}
         className="w-full h-16 bg-primary rounded-2xl justify-center items-center shadow-lg shadow-primary/40 mt-4 active:opacity-90"
       >
-        <Text className="text-xl font-extrabold text-white">Đăng ký ngay</Text>
+        <Text className="text-xl font-extrabold text-white">
+          {t('screens.register.register_button')}
+        </Text>
       </TouchableOpacity>
     </View>
   );

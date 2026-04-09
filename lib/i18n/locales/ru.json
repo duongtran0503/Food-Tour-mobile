@@ -1,0 +1,157 @@
+{
+  "common": {
+    "welcome": "Добро пожаловать в Foodie-VK!",
+    "home": "Главная",
+    "profile": "Профиль",
+    "settings": "Настройки",
+    "logout": "Выйти",
+    "back_to_home": "На главную",
+    "loading": "Загрузка..."
+  },
+  "speech": {
+  "welcome": "Добро пожаловать в {{name}}. {{description}}",
+  "menu_intro": "Меню включает: ",
+  "menu_item": "{{name}} по цене от {{min}} до {{max}} рублей",
+  "android_error": "Уведомление",
+  "android_pause_unsupported": "Устройства Android в настоящее время не поддерживают паузу."
+},
+  "screens": {
+    "language": {
+      "title": "Выберите язык",
+      "confirm": "Подтвердить изменение"
+    },
+    "all_restaurants": {
+      "header_title": "Результаты поиска",
+      "search_placeholder": "Поиск ресторанов...",
+      "results_found": "Найдено <0>{{count}}</0> результатов",
+      "filters": {
+        "all": "Все",
+        "seafood": "Морепродукты",
+        "snacks": "Закуски",
+        "dessert": "Десерты",
+        "hotpot_bbq": "Хот-пот & Барбекю"
+      }
+    },
+    "food_detail": {
+      "purchases": "({{count}}+ покупок)",
+      "quantity": "Количество",
+      "description_title": "Описание блюда",
+      "promo_text": "Сегодня скидка 10% при заказе через приложение!",
+      "add_to_cart": "В корзину",
+      "developing_feature": "Функция в разработке!"
+    },
+    "restaurant_detail": {
+      "reviews_count": "({{count}} отзывов)",
+      "open_time": "Открыто",
+      "featured_dishes": "Рекомендуемые блюда 🔥",
+      "full_menu": "Полное меню"
+    },
+    "tour_detail": {
+      "destinations_title": "Популярные направления 🔥",
+      "popular_tag": "Популярное",
+      "view_restaurant": "Подробнее о ресторане",
+      "reviews_title": "Отзывы посетителей",
+      "start_journey": "Начать путешествие"
+    },
+    "login": {
+      "email_label": "Электронная почта",
+      "password_label": "Пароль",
+      "forgot_password": "Забыли пароль?",
+      "login_button": "Войти",
+      "email_placeholder": "duong@foodvk.com",
+      "no_account": "Нет аккаунта?",
+      "register_now": "Зарегистрироваться",
+      "welcome_back": "С возвращением!",
+      "subtitle": "Введите данные, чтобы исследовать Винькхань",
+      "or_social": "Или войдите через"
+    },
+    "register": {
+      "full_name_label": "Полное имя",
+      "email_label": "Электронная почта",
+      "password_label": "Пароль",
+      "confirm_password_label": "Подтвердите пароль",
+      "register_button": "Зарегистрироваться сейчас",
+      "full_name_placeholder": "Чан Зыонг",
+      "already_have_account": "Уже есть аккаунт?",
+      "login_now": "Войти",
+      "create_account": "Создать аккаунт",
+      "subtitle": "Зарегистрируйтесь, чтобы вместе с Ан и Зыонгом открыть лучшие блюда Винькханя",
+      "terms_agreement": "Регистрируясь, вы соглашаетесь с <0>Условиями использования</0> и <1>Политикой конфиденциальности</1> FoodVK."
+    },
+    "home": {
+      "welcome": "Добро пожаловать в",
+      "categories": "Категории",
+      "tour_list": "Список туров",
+      "popular_restaurants": "Популярные рестораны",
+      "view_all": "Смотреть все",
+      "on_sale": "🔥 По скидке",
+      "for_you": "✨ Для вас",
+      "cat_names": {
+        "burgers": "Бургеры",
+        "vegan": "Веганское",
+        "deals": "Предложения",
+        "ice_cream": "Мороженое",
+        "pizza": "Пицца"
+      }
+    },
+    "onboarding": {
+      "skip": "Пропустить",
+      "back": "Назад",
+      "next": "Далее",
+      "start": "Начать",
+      "step1": {
+        "title": "Улиточный рай",
+        "description": "Откройте для себя сотни известных ресторанов улиток на улице Винькхань — от простых до премиальных морепродуктов."
+      },
+      "step2": {
+        "title": "Гастрономическая карта",
+        "description": "Легко находите лучшие рестораны в 4-м районе с точными указаниями."
+      },
+      "step3": {
+        "title": "Опыт FoodVK",
+        "description": "Бронируйте столики заранее, ловите эксклюзивные предложения и делитесь впечатлениями о еде с сообществом фуди."
+      }
+    }
+  },
+  "components": {
+    "customSidebar": {
+      "profileSettings": "Профиль и настройки",
+      "study": "Обучение и тренинги",
+      "invite": "Пригласить друзей",
+      "gift": "Отправить подарок",
+      "wallet": "Кошелёк FoodVK",
+      "help": "Центр поддержки",
+      "language": "Язык"
+    },
+    "customerNavbar": {
+      
+    },
+    "speech": {
+      "start": "Начать аудиогид",
+      "status_playing": "Воспроизведение...",
+      "status_paused": "На паузе",
+      "playing": "Воспроизводится",
+      "paused": "На паузе"
+    },
+    "foodTourCard": {
+      "places": "мест",
+      "rating": "Рейтинг"
+    },
+    "searchBar": {
+      "placeholder_main": "Найти блюда Винькханя...",
+      "placeholder_input": "Введите название блюда или ресторана...",
+      "use_location": "Использовать текущее местоположение",
+      "suggestions_title": "Предложения",
+      "no_results": "Ничего не найдено",
+      "suffix_country": "Вьетнам"
+    },
+    "reviews": {
+      "summary_count": "На основе {{count}} отзывов",
+      "no_reviews": "Пока нет отзывов"
+    },
+    "foodCards": {
+      "hot_deal": "ГОРЯЧАЯ СКИДКА",
+      "shipping_fee": "Стоимость доставки"
+    }
+  }
+}

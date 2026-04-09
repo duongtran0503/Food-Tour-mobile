@@ -1,6 +1,7 @@
 import userAvatar from "@/assets/images/user-avatar.png";
 import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
+import { useTranslation } from "react-i18next";
 import { Image, Text, View } from 'react-native';
 // Kiểu dữ liệu cho một bình luận
 interface ReviewItem {
@@ -31,7 +32,6 @@ const reviewsData: ReviewItem[] = [
   },
 ];
 
-// Component con hiển thị sao
 const StarRating = ({ rating, size = 14 }: { rating: number; size?: number }) => (
   <View className="flex-row">
     {[1, 2, 3, 4, 5].map((s) => (
@@ -46,6 +46,11 @@ const StarRating = ({ rating, size = 14 }: { rating: number; size?: number }) =>
 );
 
 export default function TourReviews() {
+  const { t } = useTranslation(); // 2. Khởi tạo hàm t()
+  
+  // Giả sử lấy số lượng review từ mảng data
+  const totalReviews = 120; 
+
   return (
     <View className="mt-8 px-4">
       {/* Tóm tắt đánh giá */}
@@ -53,7 +58,10 @@ export default function TourReviews() {
         <View>
           <Text className="text-4xl font-black text-slate-900">4.9</Text>
           <StarRating rating={5} size={18} />
-          <Text className="text-slate-400 text-xs mt-1">Dựa trên 120 đánh giá</Text>
+          {/* 3. Truyền biến count vào hàm t() */}
+          <Text className="text-slate-400 text-xs mt-1">
+            {t('components.reviews.summary_count', { count: totalReviews })}
+          </Text>
         </View>
         
         {/* Biểu đồ cột mini */}
@@ -77,17 +85,10 @@ export default function TourReviews() {
         <View key={item.id} className="mb-6 pb-6 border-b border-slate-50">
           <View className="flex-row justify-between items-center mb-3">
             <View className="flex-row items-center">
- {item.avatar ? (
-                <Image 
-                  source={{ uri: item.avatar }}
-                  className="w-10 h-10 rounded-full bg-slate-100"
-                />
-              ) : (
-                <Image 
-                  source={userAvatar}
-                  className="w-10 h-10 rounded-full bg-slate-100"
-                />
-              )}
+              <Image 
+                source={item.avatar ? { uri: item.avatar } : userAvatar}
+                className="w-10 h-10 rounded-full bg-slate-100"
+              />
               <View className="ml-3">
                 <Text className="font-bold text-slate-900">{item.user}</Text>
                 <Text className="text-[10px] text-slate-400">{item.date}</Text>

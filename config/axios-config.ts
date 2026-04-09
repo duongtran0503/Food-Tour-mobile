@@ -1,13 +1,11 @@
+import i18n from '@/lib/i18n';
 import axios from 'axios';
 
-// LƯU Ý CHO DƯƠNG: 
-// Nếu chạy trên máy ảo Android: dùng http://10.0.2.2:8080
-// Nếu chạy trên máy thật: dùng IP của máy tính (VD: http://192.168.1.5:8080)
 const baseURL = process.env.EXPO_PUBLIC_API_URL;
 
 const apiClient = axios.create({
     baseURL: baseURL,
-    timeout: 15000, // Đợi tối đa 15 giây
+    timeout: 15000,
     headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
@@ -16,6 +14,10 @@ const apiClient = axios.create({
 
 apiClient.interceptors.request.use(
     async (config) => {
+        const currentLanguage = i18n.language || 'vi';
+
+        config.headers['Accept-Language'] = currentLanguage;
+        config.headers['lang'] = currentLanguage;
 
         return config;
     },
@@ -25,13 +27,8 @@ apiClient.interceptors.request.use(
 );
 
 apiClient.interceptors.response.use(
-    (response) => response.data, // Trả về data luôn, không cần .data ở phía ngoài component
+    (response) => response.data,
     (error) => {
-        if (error.response) {
-            console.error('API Error:', error.response.status, error.response.data);
-        } else {
-            console.error('Network Error:', error.message);
-        }
         return Promise.reject(error);
     }
 );

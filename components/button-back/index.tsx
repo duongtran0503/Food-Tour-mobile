@@ -10,7 +10,7 @@ export default function ButtonBack() {
         if (navigation.canGoBack()) {
             router.back();
         } else {
-            router.replace('/'); 
+            router.replace('/home'); 
         }
     };
 

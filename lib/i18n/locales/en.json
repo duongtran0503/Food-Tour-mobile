@@ -1,0 +1,158 @@
+{
+  "common": {
+    "welcome": "Welcome to Foodie-VK!",
+    "home": "Home",
+    "profile": "Profile",
+    "settings": "Settings",
+    "logout": "Logout",
+    "back_to_home": "Back to home",
+    "loading": "Loading..."
+  },
+    "speech": {
+    "welcome": "Welcome to {{name}}. {{description}}",
+    "menu_intro": "The menu includes: ",
+    "menu_item": "{{name}} priced from {{min}} to {{max}} dollars",
+    "android_error": "Notice",
+    "android_pause_unsupported": "Android devices currently do not support Pause."
+  },
+  "screens": {
+    "language": {
+      "title": "Select Language",
+      "confirm": "Confirm change"
+    },
+    "all_restaurants": {
+      "header_title": "Search Results",
+      "search_placeholder": "Search for restaurants...",
+      "results_found": "<0>{{count}}</0> result(s) found",
+      "filters": {
+        "all": "All",
+        "seafood": "Seafood",
+        "snacks": "Snacks",
+        "dessert": "Dessert",
+        "hotpot_bbq": "Hotpot & BBQ"
+      }
+    },
+  
+    "food_detail": {
+      "purchases": "({{count}}+ purchases)",
+      "quantity": "Quantity",
+      "description_title": "Description",
+      "promo_text": "This item is 10% off when ordering through the app today!",
+      "add_to_cart": "Add to Cart",
+      "developing_feature": "Feature in development!"
+    },
+    "restaurant_detail": {
+      "reviews_count": "({{count}} reviews)",
+      "open_time": "Open",
+      "featured_dishes": "Featured Dishes 🔥",
+      "full_menu": "Full Menu"
+    },
+    "tour_detail": {
+      "destinations_title": "Popular Destinations 🔥",
+      "popular_tag": "Popular",
+      "view_restaurant": "View Details",
+      "reviews_title": "Customer Reviews",
+      "start_journey": "Start Journey"
+    },
+    "login": {
+      "email_label": "Email",
+      "password_label": "Password",
+      "forgot_password": "Forgot Password?",
+      "login_button": "Login",
+      "email_placeholder": "duong@foodvk.com",
+      "no_account": "Don't have an account?",
+      "register_now": "Sign Up",
+      "welcome_back": "Welcome Back!",
+      "subtitle": "Enter your details to explore Vinh Khanh",
+      "or_social": "Or continue with"
+    },
+    "register": {
+      "full_name_label": "Full Name",
+      "email_label": "Email",
+      "password_label": "Password",
+      "confirm_password_label": "Confirm Password",
+      "register_button": "Sign Up Now",
+      "full_name_placeholder": "Tran Duong",
+      "already_have_account": "Already have an account?",
+      "login_now": "Login",
+      "create_account": "Create Account",
+      "subtitle": "Sign up to join An and Duong in discovering Vinh Khanh's best foods",
+      "terms_agreement": "By signing up, you agree to FoodVK's <0>Terms of Service</0> and <1>Privacy Policy</1>."
+    },
+    "home": {
+      "welcome": "Welcome to",
+      "categories": "Categories",
+      "tour_list": "Tour List",
+      "popular_restaurants": "Popular Restaurants",
+      "view_all": "View All",
+      "on_sale": "🔥 On Sale",
+      "for_you": "✨ Just for You",
+      "cat_names": {
+        "burgers": "Burgers",
+        "vegan": "Vegan",
+        "deals": "Deals",
+        "ice_cream": "Ice Cream",
+        "pizza": "Pizza"
+      }
+    },
+    "onboarding": {
+      "skip": "Skip",
+      "back": "Back",
+      "next": "Next",
+      "start": "Get Started",
+      "step1": {
+        "title": "Snail Paradise",
+        "description": "Discover hundreds of famous snail restaurants along Vinh Khanh Street, from casual snails to premium seafood."
+      },
+      "step2": {
+        "title": "Food Map",
+        "description": "Easily find the best restaurants in District 4 with accurate turn-by-turn directions."
+      },
+      "step3": {
+        "title": "FoodVK Experience",
+        "description": "Reserve tables in advance, snag exclusive deals, and share your culinary experiences with the Foodie community."
+      }
+    }
+  },
+  "components": {
+    "customSidebar": {
+      "profileSettings": "Profile & Settings",
+      "study": "Study & Training",
+      "invite": "Invite Friends",
+      "gift": "Send Gift",
+      "wallet": "FoodVK Wallet",
+      "help": "Help Center",
+      "language": "Language"
+    },
+    "customerNavbar": {
+      
+    },
+    "speech": {
+      "start": "Start Audio Guide",
+      "status_playing": "Playing...",
+      "status_paused": "Paused",
+      "playing": "Playing",
+      "paused": "Paused"
+    },
+    "foodTourCard": {
+      "places": "places",
+      "rating": "Rating"
+    },
+    "searchBar": {
+      "placeholder_main": "Search Vinh Khanh specialties...",
+      "placeholder_input": "Enter dish or restaurant name...",
+      "use_location": "Use current location",
+      "suggestions_title": "Suggestions",
+      "no_results": "No results found",
+      "suffix_country": "Vietnam"
+    },
+    "reviews": {
+      "summary_count": "Based on {{count}} reviews",
+      "no_reviews": "No reviews yet"
+    },
+    "foodCards": {
+      "hot_deal": "HOT DEAL",
+      "shipping_fee": "Shipping fee"
+    }
+  }
+}

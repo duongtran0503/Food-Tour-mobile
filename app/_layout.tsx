@@ -1,78 +1,66 @@
 import "@/app/global.css";
-import CustomDrawerContent from "@/components/custom-sidebar";
+import i18n from "@/lib/i18n";
 import { config } from "@gluestack-ui/config";
 import { GluestackUIProvider } from "@gluestack-ui/themed";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { Drawer } from "expo-router/drawer";
+import { Stack } from "expo-router"; // Chuyển từ Drawer sang Stack
+import { I18nextProvider } from "react-i18next";
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { configureReanimatedLogger, ReanimatedLogLevel } from "react-native-reanimated";
+
 const queryClient = new QueryClient();
+
+configureReanimatedLogger({
+  level: ReanimatedLogLevel.warn,
+  strict: false, 
+});
+
 export default function RootLayout() {
   return (
-    <QueryClientProvider client={queryClient}>
- <GluestackUIProvider config={config}>
-      <GestureHandlerRootView style={{ flex: 1 }}>
-        <Drawer
-        drawerContent={(props) => <CustomDrawerContent {...props} />}
-          screenOptions={{
-            headerShown: false,
-            drawerPosition: 'right',
-            drawerStyle: { width: '75%' },
-        
-          }}
-        >
-            <Drawer.Screen
-            name="index"
-            options={{ drawerItemStyle: { display: 'none' } }}
-          />
-          <Drawer.Screen
-            name="(tabs)" 
-            options={{
-              drawerLabel: 'Home',
-              title: 'FoodVK',
-              
-            }}
-          />
-          <Drawer.Screen
-           name="tour/detail/[id]"
-
-            options={{  drawerItemStyle: { display: 'none' },swipeEnabled: false, }}
+    <I18nextProvider i18n={i18n}>
+      <QueryClientProvider client={queryClient}>
+        <GluestackUIProvider config={config}>
+          <GestureHandlerRootView style={{ flex: 1 }}>
             
-          />
-            <Drawer.Screen
-           name="restaurant/detail/[id]"
+            {/* Sử dụng Stack để quản lý các folder con */}
+            <Stack
+              screenOptions={{
+                headerShown: false, // Ẩn header mặc định để dùng header tự chế của mình
+              
+              }}
+            >
+              {/* Màn hình Splash/Index */}
+              <Stack.Screen name="index" />
 
-            options={{  }}
-          />
+              {/* Nhóm Tabs (Home, Search, v.v.) */}
+              <Stack.Screen name="(tabs)" />
 
-            <Drawer.Screen
-            name="food/detail/[id]"
-            options={{  }}
-          />
-            <Drawer.Screen
-         name="tour/map/[id]"
-              options={{  }}
-          />
+              {/* Trang chi tiết Tour */}
+              <Stack.Screen name="tour/detail/[id]" />
+              
+              {/* Trang chi tiết Nhà hàng */}
+              <Stack.Screen name="restaurant/detail/[id]" />
 
-            <Drawer.Screen
-           name="restaurant/all"
+              {/* Trang chi tiết Món ăn */}
+              <Stack.Screen name="food/detail/[id]" />
 
-            options={{  drawerItemStyle: { display: 'none' },swipeEnabled: false, }}
-          />
+              {/* Trang Bản đồ Tour */}
+              <Stack.Screen name="tour/map/[id]" />
 
+              {/* Trang danh sách tất cả nhà hàng */}
+              <Stack.Screen name="restaurant/all" />
 
-          <Drawer.Screen
-            name="(auth)"
-            options={{ drawerItemStyle: { display: 'none' } }} 
-          />
-          <Drawer.Screen
-            name="onboarding"
-            options={{ drawerItemStyle: { display: 'none' } }}
-          />
-        
-        </Drawer>
-      </GestureHandlerRootView>
-    </GluestackUIProvider>
-    </QueryClientProvider>
+              {/* Nhóm Đăng nhập / Đăng ký */}
+              <Stack.Screen name="(auth)" />
+
+              {/* Trang hướng dẫn (nếu có) */}
+              <Stack.Screen name="onboarding" />
+              
+            </Stack>
+
+          </GestureHandlerRootView>
+        </GluestackUIProvider>
+      </QueryClientProvider>
+    </I18nextProvider>
   );
 }
-   

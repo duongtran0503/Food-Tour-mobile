@@ -1,11 +1,13 @@
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next'; // 1. Import i18n
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function OnboardingScreen() {
   const router = useRouter();
-  const [step, setStep] = useState(1); // Quản lý 3 bước: 1, 2, 3
+  const { t } = useTranslation(); 
+  const [step, setStep] = useState(1);
 
   const handleNext = async () => {
     if (step < 3) {
@@ -15,26 +17,11 @@ export default function OnboardingScreen() {
     }
   };
 
-  // Nội dung cho từng bước
-  const onboardingData = {
-    1: {
-      title: "Thiên Đường Ốc",
-      description: "Khám phá hàng trăm quán ốc nổi tiếng dọc phố Vĩnh Khánh, từ ốc bình dân đến hải sản cao cấp.",
-      image: "https://cdn-icons-png.flaticon.com/512/3321/3321473.png", // Bạn thay bằng ảnh ốc/biển
-    },
-    2: {
-      title: "Bản Đồ Ẩm Thực",
-      description: "Dễ dàng tìm kiếm vị trí các quán ăn ngon nhất Quận 4 với chỉ dẫn đường đi chính xác.",
-      image: "https://cdn-icons-png.flaticon.com/512/854/854878.png", // Bạn thay bằng ảnh map
-    },
-    3: {
-      title: "Trải Nghiệm FoodVK",
-      description: "Đặt bàn trước, săn deal độc quyền và chia sẻ cảm nhận ẩm thực cùng cộng đồng Foodie.",
-      image: "https://cdn-icons-png.flaticon.com/512/3170/3170733.png", // Bạn thay bằng ảnh logo app
-    }
+  const images = {
+    1: "https://cdn-icons-png.flaticon.com/512/3321/3321473.png",
+    2: "https://cdn-icons-png.flaticon.com/512/854/854878.png",
+    3: "https://cdn-icons-png.flaticon.com/512/3170/3170733.png",
   };
-
-  const currentData = onboardingData[step as keyof typeof onboardingData];
 
   return (
     <SafeAreaView className="flex-1 bg-white p-6">
@@ -43,32 +30,37 @@ export default function OnboardingScreen() {
         onPress={() => router.replace('/(auth)/login')} 
         className="items-end"
       >
-        <Text className="text-slate-400 font-bold text-lg">Bỏ qua</Text>
+        <Text className="text-slate-400 font-bold text-lg">
+          {t('screens.onboarding.skip')}
+        </Text>
       </TouchableOpacity>
 
       <View className="flex-1 justify-center items-center">
         {/* Hình ảnh minh họa */}
         <View className="w-72 h-72 bg-slate-50 rounded-full mb-10 justify-center items-center border border-slate-100 shadow-sm">
           <Image 
-            source={{ uri: currentData.image }}
+            source={{ uri: images[step as keyof typeof images] }}
             className="w-48 h-48"
             resizeMode="contain"
           />
         </View>
 
-        {/* Tiêu đề & Nội dung */}
+        {/* Tiêu đề & Nội dung lồng động theo step */}
         <Text className="text-4xl font-black text-slate-800 text-center mb-4 tracking-tight">
-          {currentData.title}
+          {t(`screens.onboarding.step${step}.title`)}
         </Text>
         <Text className="text-lg text-slate-500 text-center px-6 leading-7">
-          {currentData.description}
+          {t(`screens.onboarding.step${step}.description`)}
         </Text>
 
-        {/* Thanh phân trang (Pagination Dots) */}
+        {/* Thanh phân trang */}
         <View className="flex-row mt-12 items-center justify-center">
-          <View className={`h-2 rounded-full mx-1 transition-all ${step === 1 ? 'bg-primary w-8' : 'bg-slate-200 w-2'}`} />
-          <View className={`h-2 rounded-full mx-1 transition-all ${step === 2 ? 'bg-primary w-8' : 'bg-slate-200 w-2'}`} />
-          <View className={`h-2 rounded-full mx-1 transition-all ${step === 3 ? 'bg-primary w-8' : 'bg-slate-200 w-2'}`} />
+          {[1, 2, 3].map((i) => (
+            <View 
+              key={i}
+              className={`h-2 rounded-full mx-1 transition-all ${step === i ? 'bg-primary w-8' : 'bg-slate-200 w-2'}`} 
+            />
+          ))}
         </View>
       </View>
 
@@ -77,9 +69,11 @@ export default function OnboardingScreen() {
         {step > 1 && (
           <TouchableOpacity 
             onPress={() => setStep(step - 1)}
-            className="flex-1 h-16 border-2 border-slate-100 rounded-2xl justify-center items-center"
+            className="flex-1 h-16 border-2 border-slate-100 rounded-2xl justify-center items-center mr-2"
           >
-            <Text className="text-xl font-bold text-slate-400">Quay lại</Text>
+            <Text className="text-xl font-bold text-slate-400">
+              {t('screens.onboarding.back')}
+            </Text>
           </TouchableOpacity>
         )}
         
@@ -88,7 +82,7 @@ export default function OnboardingScreen() {
           className="flex-1 h-16 bg-primary rounded-2xl justify-center items-center shadow-lg shadow-primary/30"
         >
           <Text className="text-xl font-bold text-white">
-            {step === 3 ? "Bắt đầu ngay" : "Tiếp theo"}
+            {step === 3 ? t('screens.onboarding.start') : t('screens.onboarding.next')}
           </Text>
         </TouchableOpacity>
       </View>

@@ -1,0 +1,157 @@
+{
+  "common": {
+    "welcome": "欢迎来到Foodie-VK！",
+    "home": "首页",
+    "profile": "个人资料",
+    "settings": "设置",
+    "logout": "退出登录",
+    "back_to_home": "返回首页",
+    "loading": "加载中..."
+  },
+  "speech": {
+  "welcome": "欢迎来到{{name}}。{{description}}",
+  "menu_intro": "菜单包括：",
+  "menu_item": "{{name}}，价格从{{min}}到{{max}}元",
+  "android_error": "提示",
+  "android_pause_unsupported": "安卓设备目前不支持暂停功能。"
+},
+  "screens": {
+    "language": {
+      "title": "选择语言",
+      "confirm": "确认更改"
+    },
+    "all_restaurants": {
+      "header_title": "搜索结果",
+      "search_placeholder": "搜索餐厅...",
+      "results_found": "找到<0>{{count}}</0>个结果",
+      "filters": {
+        "all": "全部",
+        "seafood": "海鲜",
+        "snacks": "小吃",
+        "dessert": "甜点",
+        "hotpot_bbq": "火锅 & 烧烤"
+      }
+    },
+    "food_detail": {
+      "purchases": "({{count}}+人购买)",
+      "quantity": "数量",
+      "description_title": "商品描述",
+      "promo_text": "今日通过APP下单，此商品可享受10%优惠！",
+      "add_to_cart": "加入购物车",
+      "developing_feature": "功能开发中！"
+    },
+    "restaurant_detail": {
+      "reviews_count": "({{count}}条评价)",
+      "open_time": "营业中",
+      "featured_dishes": "特色菜品 🔥",
+      "full_menu": "完整菜单"
+    },
+    "tour_detail": {
+      "destinations_title": "热门目的地 🔥",
+      "popular_tag": "热门",
+      "view_restaurant": "查看详情",
+      "reviews_title": "顾客评价",
+      "start_journey": "开始旅程"
+    },
+    "login": {
+      "email_label": "电子邮箱",
+      "password_label": "密码",
+      "forgot_password": "忘记密码？",
+      "login_button": "登录",
+      "email_placeholder": "duong@foodvk.com",
+      "no_account": "还没有账号？",
+      "register_now": "立即注册",
+      "welcome_back": "欢迎回来！",
+      "subtitle": "输入信息探索永庆街",
+      "or_social": "或通过社交账号登录"
+    },
+    "register": {
+      "full_name_label": "姓名",
+      "email_label": "电子邮箱",
+      "password_label": "密码",
+      "confirm_password_label": "确认密码",
+      "register_button": "立即注册",
+      "full_name_placeholder": "陈杨",
+      "already_have_account": "已有账号？",
+      "login_now": "登录",
+      "create_account": "创建账号",
+      "subtitle": "注册加入An和Duong，一起探索永庆街美食",
+      "terms_agreement": "注册即表示您同意FoodVK的<0>服务条款</0>和<1>隐私政策</1>。"
+    },
+    "home": {
+      "welcome": "欢迎来到",
+      "categories": "分类",
+      "tour_list": "行程列表",
+      "popular_restaurants": "热门餐厅",
+      "view_all": "查看全部",
+      "on_sale": "🔥 促销中",
+      "for_you": "✨ 为你推荐",
+      "cat_names": {
+        "burgers": "汉堡",
+        "vegan": "素食",
+        "deals": "优惠",
+        "ice_cream": "冰淇淋",
+        "pizza": "披萨"
+      }
+    },
+    "onboarding": {
+      "skip": "跳过",
+      "back": "返回",
+      "next": "下一步",
+      "start": "开始体验",
+      "step1": {
+        "title": "螺蛳天堂",
+        "description": "探索永庆街沿线数百家著名螺蛳餐厅，从平民螺蛳到高档海鲜。"
+      },
+      "step2": {
+        "title": "美食地图",
+        "description": "通过精准导航，轻松找到第四区最佳餐厅。"
+      },
+      "step3": {
+        "title": "FoodVK体验",
+        "description": "提前预订座位，抢购独家优惠，与美食社区分享您的烹饪体验。"
+      }
+    }
+  },
+  "components": {
+    "customSidebar": {
+      "profileSettings": "个人资料与设置",
+      "study": "学习与培训",
+      "invite": "邀请好友",
+      "gift": "赠送礼物",
+      "wallet": "FoodVK钱包",
+      "help": "帮助中心",
+      "language": "语言"
+    },
+    "customerNavbar": {
+      
+    },
+    "speech": {
+      "start": "开始语音导览",
+      "status_playing": "播放中...",
+      "status_paused": "已暂停",
+      "playing": "播放中",
+      "paused": "已暂停"
+    },
+    "foodTourCard": {
+      "places": "个地点",
+      "rating": "评分"
+    },
+    "searchBar": {
+      "placeholder_main": "搜索永庆街美食...",
+      "placeholder_input": "输入菜品或餐厅名称...",
+      "use_location": "使用当前位置",
+      "suggestions_title": "搜索建议",
+      "no_results": "未找到相关结果",
+      "suffix_country": "越南"
+    },
+    "reviews": {
+      "summary_count": "基于{{count}}条评价",
+      "no_reviews": "暂无评价"
+    },
+    "foodCards": {
+      "hot_deal": "热卖优惠",
+      "shipping_fee": "运费"
+    }
+  }
+}

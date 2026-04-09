@@ -1,20 +1,21 @@
 import { Ionicons } from "@expo/vector-icons";
 import React, { useState } from "react";
+import { useTranslation } from 'react-i18next'; // 1. Import hook
 import {
-    FlatList,
-    Modal,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View
+  FlatList,
+  Modal,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function SearchBar() {
+  const { t } = useTranslation(); // 2. Khởi tạo hàm t()
   const [isSearching, setIsSearching] = useState(false);
   const [searchText, setSearchText] = useState("");
 
-  // Dữ liệu giả lập kết quả tìm kiếm
   const suggestions = [
     { id: '1', title: 'Ốc Đào', area: 'Vĩnh Khánh' },
     { id: '2', title: 'Ốc Oanh', area: 'Vĩnh Khánh' },
@@ -36,7 +37,7 @@ export default function SearchBar() {
       >
         <Ionicons name="search" size={20} color="#94a3b8" />
         <Text className="flex-1 ml-3 font-medium text-slate-400">
-          Tìm món ngon Vĩnh Khánh...
+          {t('components.searchBar.placeholder_main')}
         </Text>
         <View className="bg-primary/10 p-2 rounded-lg">
           <Ionicons name="options-outline" size={20} color="#930004" />
@@ -50,7 +51,6 @@ export default function SearchBar() {
         onRequestClose={() => setIsSearching(false)}
       >
         <SafeAreaView className="flex-1 bg-white">
-          {/* Header của Modal tìm kiếm */}
           <View className="flex-row items-center px-4 py-3 border-b border-slate-100">
             <TouchableOpacity onPress={() => setIsSearching(false)} className="pr-3">
               <Ionicons name="arrow-back" size={24} color="#930004" />
@@ -60,7 +60,7 @@ export default function SearchBar() {
               <Ionicons name="search" size={18} color="#64748b" />
               <TextInput 
                 autoFocus
-                placeholder="Nhập tên món, quán ăn..."
+                placeholder={t('components.searchBar.placeholder_input')}
                 className="flex-1 ml-2 font-medium text-slate-800"
                 value={searchText}
                 onChangeText={setSearchText}
@@ -73,15 +73,16 @@ export default function SearchBar() {
             </View>
           </View>
 
-          {/* Danh sách gợi ý/kết quả */}
           <View className="flex-1">
             <TouchableOpacity className="flex-row items-center px-5 py-4 border-b border-slate-50">
               <Ionicons name="location-outline" size={20} color="#64748b" />
-              <Text className="ml-3 text-slate-700 font-bold">Sử dụng vị trí hiện tại</Text>
+              <Text className="ml-3 text-slate-700 font-bold">
+                {t('components.searchBar.use_location')}
+              </Text>
             </TouchableOpacity>
 
             <Text className="px-5 pt-4 pb-2 text-xs font-bold text-slate-400 uppercase tracking-widest">
-              Gợi ý kết quả
+              {t('components.searchBar.suggestions_title')}
             </Text>
 
             <FlatList
@@ -92,13 +93,17 @@ export default function SearchBar() {
                   <Ionicons name="restaurant-outline" size={20} color="#cbd5e1" />
                   <View className="ml-4">
                     <Text className="text-slate-800 font-semibold text-base">{item.title}</Text>
-                    <Text className="text-slate-500 text-xs">{item.area}, Việt Nam</Text>
+                    <Text className="text-slate-500 text-xs">
+                      {item.area}, {t('components.searchBar.suffix_country')}
+                    </Text>
                   </View>
                 </TouchableOpacity>
               )}
               ListEmptyComponent={() => (
                 <View className="items-center mt-10">
-                  <Text className="text-slate-400 italic">Không tìm thấy kết quả phù hợp</Text>
+                  <Text className="text-slate-400 italic">
+                    {t('components.searchBar.no_results')}
+                  </Text>
                 </View>
               )}
             />

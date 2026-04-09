@@ -1,0 +1,159 @@
+{
+ "common": {
+    "welcome": "Chào mừng đến với Foodie-VK!",
+    "home": "Trang Chủ",
+    "profile": "Hồ Sơ",
+    "settings": "Cài Đặt",
+    "logout": "Đăng Xuất",
+    "back_to_home": "Trở về trang chủ",
+    "loading": "Đang tải..."
+  },
+  "speech": {
+    "welcome": "Chào mừng bạn đến với {{name}}. {{description}}",
+    "menu_intro": "Thực đơn gồm có: ",
+    "menu_item": "Món {{name}} giá {{min}} đến {{max}} đồng",
+    "android_error": "Thông báo",
+    "android_pause_unsupported": "Thiết bị Android hiện chưa hỗ trợ Tạm dừng."
+  },
+  "screens": {
+    "language": {
+      "title": "Chọn ngôn ngữ",
+      "confirm": "Xác nhận thay đổi"
+    },
+    "all_restaurants": {
+      "header_title": "Kết quả tìm kiếm",
+      "search_placeholder": "Tìm kiếm quán ăn...",
+      "results_found": "<0>{{count}}</0> Kết quả tìm thấy",
+      "filters": {
+        "all": "Tất cả",
+        "seafood": "Hải sản",
+        "snacks": "Ăn vặt",
+        "dessert": "Tráng miệng",
+        "hotpot_bbq": "Lẩu & Nướng"
+      }
+    },
+    "food_detail": {
+      "purchases": "({{count}}+ lượt mua)",
+      "quantity": "Số lượng",
+      "description_title": "Mô tả món ăn",
+      "promo_text": "Món này đang được giảm giá 10% khi đặt qua app hôm nay!",
+      "add_to_cart": "Thêm vào giỏ hàng",
+      "developing_feature": "Tính năng đang được phát triển!"
+    },
+    "restaurant_detail": {
+      "reviews_count": "({{count}} đánh giá)",
+      "open_time": "Mở cửa",
+      "featured_dishes": "Món nổi bật 🔥",
+      "full_menu": "Thực đơn nhà hàng"
+    },
+    "tour_detail": {
+      "destinations_title": "Điểm đến hấp dẫn 🔥",
+      "popular_tag": "Phổ biến",
+      "view_restaurant": "Xem chi tiết quán",
+      "reviews_title": "Đánh giá từ thực khách",
+      "start_journey": "Bắt đầu hành trình"
+    },
+    "login": {
+      "email_label": "Email",
+      "password_label": "Mật khẩu",
+      "forgot_password": "Quên mật khẩu?",
+      "login_button": "Đăng nhập",
+      "email_placeholder": "duong@foodvk.com",
+      "no_account": "Chưa có tài khoản?",
+      "register_now": "Đăng ký",
+      "welcome_back": "Chào quay lại!",
+      "subtitle": "Nhập thông tin để khám phá Vĩnh Khánh",
+      "or_social": "Hoặc đăng nhập bằng"
+    },
+    "register": {
+      "full_name_label": "Họ và tên",
+      "email_label": "Email",
+      "password_label": "Mật khẩu",
+      "confirm_password_label": "Xác nhận mật khẩu",
+      "register_button": "Đăng ký ngay",
+      "full_name_placeholder": "Trần Dương",
+      "already_have_account": "Đã có tài khoản?",
+      "login_now": "Đăng nhập",
+      "create_account": "Tạo tài khoản",
+      "subtitle": "Đăng ký để cùng Ân và Dương săn món ngon Vĩnh Khánh",
+      "terms_agreement": "Bằng cách đăng ký, bạn đồng ý với <0>Điều khoản dịch vụ</0> và <1>Chính sách bảo mật</1> của FoodVK."
+    },
+   "home": {
+      "welcome": "Chào mừng đến với",
+      "categories": "Danh mục",
+      "tour_list": "Danh sách chuyến đi",
+      "popular_restaurants": "Quán ăn nổi tiếng",
+      "view_all": "Xem tất cả",
+      "on_sale": "🔥 Đang khuyến mãi",
+      "for_you": "✨ Dành riêng cho bạn",
+      "cat_names": {
+        "burgers": "Burgers",
+        "vegan": "Món chay",
+        "deals": "Ưu đãi",
+        "ice_cream": "Kem",
+        "pizza": "Pizza"
+      }
+    },
+    "onboarding": {
+      "skip": "Bỏ qua",
+      "back": "Quay lại",
+      "next": "Tiếp theo",
+      "start": "Bắt đầu ngay",
+      "step1": {
+        "title": "Thiên Đường Ốc",
+        "description": "Khám phá hàng trăm quán ốc nổi tiếng dọc phố Vĩnh Khánh, từ ốc bình dân đến hải sản cao cấp."
+      },
+      "step2": {
+        "title": "Bản Đồ Ẩm Thực",
+        "description": "Dễ dàng tìm kiếm vị trí các quán ăn ngon nhất Quận 4 với chỉ dẫn đường đi chính xác."
+      },
+      "step3": {
+        "title": "Trải Nghiệm FoodVK",
+        "description": "Đặt bàn trước, săn deal độc quyền và chia sẻ cảm nhận ẩm thực cùng cộng đồng Foodie."
+      }
+    }
+}
+,
+  "components": {
+   "customSidebar": {
+      "profileSettings": "Hồ sơ & Cài đặt",
+      "study": "Học bồi dưỡng",
+      "invite": "Mời bạn bè",
+      "gift": "Gửi quà tặng",
+      "wallet": "Ví FoodVK",
+      "help": "Trung tâm hỗ trợ",
+      "language": "Ngôn ngữ"
+    },
+    "customerNavbar": {
+      
+    },
+    "speech": {
+      "start": "Nghe thuyết trình",
+      "status_playing": "Đang thuyết trình...",
+      "status_paused": "Đã tạm dừng",
+      "playing": "Đang phát",
+      "paused": "Tạm dừng"
+    },
+    
+    "foodTourCard": {
+      "places": "địa điểm",
+      "rating": "Đánh giá"
+    },
+    "searchBar": {
+      "placeholder_main": "Tìm món ngon Vĩnh Khánh...",
+      "placeholder_input": "Nhập tên món, quán ăn...",
+      "use_location": "Sử dụng vị trí hiện tại",
+      "suggestions_title": "Gợi ý kết quả",
+      "no_results": "Không tìm thấy kết quả phù hợp",
+      "suffix_country": "Việt Nam"
+    },
+    "reviews": {
+      "summary_count": "Dựa trên {{count}} đánh giá",
+      "no_reviews": "Chưa có đánh giá nào"
+    },
+    "foodCards": {
+      "hot_deal": "GIẢM SỐC",
+      "shipping_fee": "Phí ship"
+    }   
+  }
+}

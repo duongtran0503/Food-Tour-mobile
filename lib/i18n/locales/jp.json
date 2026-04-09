@@ -1,0 +1,157 @@
+{
+  "common": {
+    "welcome": "Foodie-VKへようこそ！",
+    "home": "ホーム",
+    "profile": "プロフィール",
+    "settings": "設定",
+    "logout": "ログアウト",
+    "back_to_home": "ホームに戻る",
+    "loading": "読み込み中..."
+  },
+  "speech": {
+  "welcome": "{{name}}へようこそ。{{description}}",
+  "menu_intro": "メニュー：",
+  "menu_item": "{{name}} {{min}}円から{{max}}円",
+  "android_error": "通知",
+  "android_pause_unsupported": "Androidデバイスは現在、一時停止に対応していません。"
+},
+  "screens": {
+    "language": {
+      "title": "言語を選択",
+      "confirm": "変更を確認"
+    },
+    "all_restaurants": {
+      "header_title": "検索結果",
+      "search_placeholder": "レストランを検索...",
+      "results_found": "<0>{{count}}</0>件の結果が見つかりました",
+      "filters": {
+        "all": "すべて",
+        "seafood": "シーフード",
+        "snacks": "スナック",
+        "dessert": "デザート",
+        "hotpot_bbq": "鍋 & バーベキュー"
+      }
+    },
+    "food_detail": {
+      "purchases": "({{count}}+購入)",
+      "quantity": "数量",
+      "description_title": "商品説明",
+      "promo_text": "この商品は本日アプリからの注文で10％オフです！",
+      "add_to_cart": "カートに追加",
+      "developing_feature": "現在開発中の機能です！"
+    },
+    "restaurant_detail": {
+      "reviews_count": "({{count}}件のレビュー)",
+      "open_time": "営業中",
+      "featured_dishes": "おすすめ料理 🔥",
+      "full_menu": "フルメニュー"
+    },
+    "tour_detail": {
+      "destinations_title": "人気の観光地 🔥",
+      "popular_tag": "人気",
+      "view_restaurant": "詳細を見る",
+      "reviews_title": "お客様のレビュー",
+      "start_journey": "旅を始める"
+    },
+    "login": {
+      "email_label": "メールアドレス",
+      "password_label": "パスワード",
+      "forgot_password": "パスワードをお忘れですか？",
+      "login_button": "ログイン",
+      "email_placeholder": "duong@foodvk.com",
+      "no_account": "アカウントをお持ちでない方",
+      "register_now": "新規登録",
+      "welcome_back": "おかえりなさい！",
+      "subtitle": "情報を入力してヴィン・カインを探索しましょう",
+      "or_social": "またはソーシャルアカウントでログイン"
+    },
+    "register": {
+      "full_name_label": "氏名",
+      "email_label": "メールアドレス",
+      "password_label": "パスワード",
+      "confirm_password_label": "パスワード（確認）",
+      "register_button": "今すぐ登録",
+      "full_name_placeholder": "トラン・ズオン",
+      "already_have_account": "すでにアカウントをお持ちの方",
+      "login_now": "ログイン",
+      "create_account": "アカウント作成",
+      "subtitle": "アンとズオンと一緒にヴィン・カインのグルメを探索するために登録しましょう",
+      "terms_agreement": "登録することにより、FoodVKの<0>利用規約</0>および<1>プライバシーポリシー</1>に同意したものとみなされます。"
+    },
+    "home": {
+      "welcome": "ようこそ",
+      "categories": "カテゴリー",
+      "tour_list": "ツアー一覧",
+      "popular_restaurants": "人気レストラン",
+      "view_all": "すべて見る",
+      "on_sale": "🔥 セール中",
+      "for_you": "✨ あなたにおすすめ",
+      "cat_names": {
+        "burgers": "バーガー",
+        "vegan": "ヴィーガン",
+        "deals": "お得な情報",
+        "ice_cream": "アイスクリーム",
+        "pizza": "ピザ"
+      }
+    },
+    "onboarding": {
+      "skip": "スキップ",
+      "back": "戻る",
+      "next": "次へ",
+      "start": "始める",
+      "step1": {
+        "title": "カタツムリパラダイス",
+        "description": "ヴィン・カイン通り沿いの有名なカタツムリ料理店を数百軒発見。庶民的なカタツムリから高級シーフードまで。"
+      },
+      "step2": {
+        "title": "グルメマップ",
+        "description": "正確な道順で、第4区で最高のレストランを簡単に見つけられます。"
+      },
+      "step3": {
+        "title": "FoodVK体験",
+        "description": "事前にテーブルを予約したり、限定セールを狙ったり、フーディーコミュニティとグルメ体験を共有しましょう。"
+      }
+    }
+  },
+  "components": {
+    "customSidebar": {
+      "profileSettings": "プロフィール & 設定",
+      "study": "学習・研修",
+      "invite": "友達を招待",
+      "gift": "ギフトを送る",
+      "wallet": "FoodVKウォレット",
+      "help": "ヘルプセンター",
+      "language": "言語"
+    },
+    "customerNavbar": {
+      
+    },
+    "speech": {
+      "start": "音声ガイドを開始",
+      "status_playing": "再生中...",
+      "status_paused": "一時停止",
+      "playing": "再生中",
+      "paused": "一時停止"
+    },
+    "foodTourCard": {
+      "places": "スポット",
+      "rating": "評価"
+    },
+    "searchBar": {
+      "placeholder_main": "ヴィン・カインの名物料理を検索...",
+      "placeholder_input": "料理名や店舗名を入力...",
+      "use_location": "現在地を使用",
+      "suggestions_title": "検索候補",
+      "no_results": "該当する結果が見つかりませんでした",
+      "suffix_country": "ベトナム"
+    },
+    "reviews": {
+      "summary_count": "{{count}}件のレビューに基づく",
+      "no_reviews": "まだレビューはありません"
+    },
+    "foodCards": {
+      "hot_deal": "ホットセール",
+      "shipping_fee": "送料"
+    }
+  }
+}

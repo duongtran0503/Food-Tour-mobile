@@ -1,34 +1,26 @@
-// app/(tabs)/_layout.tsx
-import CustomTabBar from "@/components/custom-tabbar";
-import { Ionicons } from "@expo/vector-icons";
-import { Tabs } from "expo-router";
+import CustomDrawerContent from "@/components/custom-sidebar";
+import { Drawer } from "expo-router/drawer";
+import React from "react";
 
-export default function TabNavigation() {
+export default function TabLayout() {
   return (
-    <Tabs
+    <Drawer
+      drawerContent={(props) => <CustomDrawerContent {...props} />}
       screenOptions={{
-        headerShown: false, 
-        tabBarActiveTintColor: "#930004", 
-        tabBarInactiveTintColor: "#64748b", 
-        tabBarStyle: {
-          height: 60,
-          paddingBottom: 10,
-          paddingTop: 5,
-        },
+        headerShown: false,
+        drawerPosition: 'right',
+        drawerStyle: { width: '75%' },
+        swipeEnabled: true,
       }}
-      tabBar={(props) => <CustomTabBar />} // Sử dụng CustomTabBar thay vì tabBar mặc định
     >
-      <Tabs.Screen
-        name="index" 
+     
+      <Drawer.Screen
+        name="(tabs-internal)" 
         options={{
-        
-          title: "Trang chủ",
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="restaurant-outline" size={size} color={color} />
-          ),
+          drawerLabel: "Trang chủ",
+          title: "FoodVK",
         }}
       />
-      
-    </Tabs>
+    </Drawer>
   );
 }

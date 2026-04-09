@@ -17,7 +17,7 @@ export default function RestaurantCard({ restaurant }: Props) {
       activeOpacity={0.9}
     >
       <View className="relative">
-        <Image source={{ uri: restaurant.image }} className="w-full h-36" resizeMode="cover" />
+        <Image source={{ uri: restaurant.images[0] }} className="w-full h-36" resizeMode="cover" />
         <View className="absolute top-2 right-2 bg-white/90 px-2 py-1 rounded-full flex-row items-center">
           <Ionicons name="star" size={12} color="#fbbf24" />
           <Text className="ml-1 font-bold text-[10px]">{restaurant.rating}</Text>

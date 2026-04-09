@@ -3,14 +3,16 @@ import { MenuItemType } from '@/types/restaurant';
 import { Ionicons } from '@expo/vector-icons';
 import { useLocalSearchParams } from 'expo-router';
 import React, { useState } from 'react';
-import { Image, ScrollView, StatusBar, Text, TouchableOpacity, View } from 'react-native';
+import { useTranslation } from 'react-i18next'; // 1. Import hook
+import { Alert, Image, ScrollView, StatusBar, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-
 
 export default function FoodDetailScreen() {
   const { id } = useLocalSearchParams();
+  const { t } = useTranslation(); // 2. Khởi tạo hàm t()
   const [quantity, setQuantity] = useState(1);
 
+  // Mock data giữ nguyên
   const food: MenuItemType = {
     id: '1',
     name: 'Ốc hương trứng muối',
@@ -29,7 +31,6 @@ export default function FoodDetailScreen() {
     <View className="flex-1 bg-white">
       <StatusBar barStyle="light-content" />
 
-      {/* Header Buttons */}
       <SafeAreaView className="absolute top-0 left-0 right-0 z-50 px-5 flex-row justify-between">
         <ButtonBack />
         <TouchableOpacity className="w-10 h-10 bg-black/30 rounded-full items-center justify-center">
@@ -38,7 +39,6 @@ export default function FoodDetailScreen() {
       </SafeAreaView>
 
       <ScrollView showsVerticalScrollIndicator={false}>
-        {/* Hình ảnh món ăn lớn */}
         <View className="relative">
           <Image 
             source={{ uri: food.image }} 
@@ -48,7 +48,6 @@ export default function FoodDetailScreen() {
           <View className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-black/50 to-transparent" />
         </View>
 
-        {/* Nội dung chi tiết */}
         <View className="bg-white -mt-8 rounded-t-[40px] px-6 pt-8 pb-32">
           <View className="flex-row justify-between items-start">
             <View className="flex-1 mr-4">
@@ -56,7 +55,10 @@ export default function FoodDetailScreen() {
               <View className="flex-row items-center mt-2">
                 <Ionicons name="star" size={18} color="#fbbf24" />
                 <Text className="ml-1 font-bold text-slate-900">{food.rating}</Text>
-                <Text className="ml-1 text-slate-400 font-medium">(500+ lượt mua)</Text>
+                {/* 3. Dịch lượt mua */}
+                <Text className="ml-1 text-slate-400 font-medium">
+                  {t('screens.food_detail.purchases', { count: 500 })}
+                </Text>
               </View>
             </View>
             <Text className="text-2xl font-black text-[#930004]">{food.price}</Text>
@@ -64,7 +66,9 @@ export default function FoodDetailScreen() {
 
           {/* Chọn số lượng */}
           <View className="flex-row items-center mt-8 bg-slate-50 p-4 rounded-3xl justify-between">
-            <Text className="font-bold text-slate-700 text-lg">Số lượng</Text>
+            <Text className="font-bold text-slate-700 text-lg">
+              {t('screens.food_detail.quantity')}
+            </Text>
             <View className="flex-row items-center">
               <TouchableOpacity 
                 onPress={() => handleAdjustQuantity('minus')}
@@ -84,30 +88,34 @@ export default function FoodDetailScreen() {
 
           {/* Mô tả món ăn */}
           <View className="mt-8">
-            <Text className="text-xl font-black text-slate-900 mb-3">Mô tả món ăn</Text>
+            <Text className="text-xl font-black text-slate-900 mb-3">
+              {t('screens.food_detail.description_title')}
+            </Text>
             <Text className="text-slate-500 leading-6 text-base italic">
               {food.desc}
             </Text>
           </View>
 
-          {/* Gợi ý thêm */}
+          {/* Banner khuyến mãi */}
           <View className="mt-8 p-4 bg-yellow-50 rounded-2xl border border-yellow-100 flex-row items-center">
             <Ionicons name="flame" size={24} color="#f59e0b" />
             <Text className="ml-3 text-yellow-800 font-medium flex-1">
-              Món này đang được giảm giá 10% khi đặt qua app hôm nay!
+              {t('screens.food_detail.promo_text')}
             </Text>
           </View>
         </View>
       </ScrollView>
 
-      {/* Nút thanh toán cố định ở dưới */}
+      {/* Nút thanh toán cố định */}
       <View className="absolute bottom-0 left-0 right-0 p-6 bg-white border-t border-slate-100">
         <TouchableOpacity 
-          className="bg-[#930004] h-16 rounded-2xl flex-row items-center justify-center shadow-lg shadow-red-900"
-          onPress={() => alert('Tinh năng đang được phát triển!')}
+          className="bg-[#930004] h-16 rounded-2xl flex-row items-center justify-center shadow-lg shadow-red-900/30"
+          onPress={() => Alert.alert(t('screens.food_detail.developing_feature'))}
         >
           <Ionicons name="cart" size={24} color="white" />
-          <Text className="text-white font-black text-lg ml-3">Thêm vào giỏ hàng</Text>
+          <Text className="text-white font-black text-lg ml-3">
+            {t('screens.food_detail.add_to_cart')}
+          </Text>
         </TouchableOpacity>
       </View>
     </View>
