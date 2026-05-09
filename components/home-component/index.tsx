@@ -1,9 +1,11 @@
 import { PriceRangeType } from '@/types/common';
 import { Ionicons } from '@expo/vector-icons';
+import { useRouter } from 'expo-router';
 import React from 'react';
 import { useTranslation } from 'react-i18next'; // 1. Import hook
-import { Image, Text, View } from 'react-native';
+import { Image, Text, TouchableOpacity, View } from 'react-native';
 interface SmallFoodCardProps {
+  id:string
   name: string;
   rate: string | number;
   time: string;
@@ -12,14 +14,17 @@ interface SmallFoodCardProps {
   promo?: boolean;
 }
 
-export function SmallFoodCard({ name, rate, time, priceRange, image, promo }: SmallFoodCardProps) {
+export function SmallFoodCard({ id,name, rate, time, priceRange, image, promo }: SmallFoodCardProps) {
   const { t } = useTranslation();
+  const router = useRouter();
 
   // Helper format giá (lấy mức giá tối thiểu để hiển thị cho gọn ở thẻ nhỏ)
   const displayPrice = `${Math.floor(priceRange.min / 1000)}k`;
 
   return (
-    <View className="w-48 mr-5 bg-white border border-slate-200 rounded-[30px] p-2 shadow-xl shadow-slate-400">
+    <TouchableOpacity 
+    onPress={()=>router.push({ pathname: "/food/detail/[id]", params: { id: id } })}
+    className="w-48 mr-5 bg-white border border-slate-200 rounded-[30px] p-2 shadow-xl shadow-slate-400">
       {/* Container Ảnh */}
       <View className="w-full h-32 bg-slate-50 rounded-[22px] overflow-hidden justify-center items-center relative">
         {image ? (
@@ -51,7 +56,7 @@ export function SmallFoodCard({ name, rate, time, priceRange, image, promo }: Sm
           {time} • {t('components.foodCards.shipping_fee')}: <Text className="text-primary text-[12px] font-bold">{displayPrice}</Text>
         </Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }
 // 1. Component Skeleton
@@ -65,6 +70,7 @@ export function BigFoodCardSkeleton() {
   );
 }
 interface BigFoodCardProps {
+  id:string;
   name: string;
   rate: string | number;
   time: string;
@@ -75,9 +81,10 @@ interface BigFoodCardProps {
   description?: string;
 }
 
-export function BigFoodCard({ name, rate, time, priceRange, tag, discount, image ,description}: BigFoodCardProps) {
+export function BigFoodCard({ id, name, rate, time, priceRange, tag, discount, image ,description}: BigFoodCardProps) {
   
   // Hàm format giá: Nếu min = max thì hiện 1 giá, nếu khác thì hiện khoảng giá
+  const router = useRouter()
   const formatPrice = () => {
     const { min, max } = priceRange;
     if (!min && !max) return "Free";
@@ -89,7 +96,11 @@ export function BigFoodCard({ name, rate, time, priceRange, tag, discount, image
   };
 
   return (
-    <View className="w-[48%] mb-2 bg-white border border-slate-100 rounded-[35px] p-2 shadow-xl shadow-slate-400">
+    <TouchableOpacity 
+    onPress={()=>router.push({ pathname: "/food/detail/[id]", params: { id: id } })}
+    className="w-[48%] mb-2 bg-white border border-slate-100 rounded-[35px] p-2 shadow-xl shadow-slate-400"
+    
+    >
       {/* Container Ảnh */}
       <View className="h-40 rounded-[28px] overflow-hidden bg-slate-50 relative">
         {image ? (
@@ -142,6 +153,6 @@ export function BigFoodCard({ name, rate, time, priceRange, tag, discount, image
           </Text>
         )}
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }

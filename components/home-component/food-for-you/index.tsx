@@ -20,6 +20,7 @@ export default function FoodForYou() {
         {/* Render dữ liệu thực */}
         {!isLoading && foods.map((food) => (
           <BigFoodCard
+            id={food.id}
             key={food.id}
             name={food.name}
             image={food.images[0]}

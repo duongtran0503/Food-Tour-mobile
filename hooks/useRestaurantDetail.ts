@@ -1,5 +1,5 @@
 import { restaurantDemo } from "@/constants/data-demo";
-import { restaurantService } from "@/servers/restaurant-service";
+import { restaurantService } from "@/services/restaurant-service";
 import { RestaurantDetailType } from "@/types/restaurant";
 import { useLocalSearchParams } from "expo-router";
 import { useCallback, useEffect, useState } from "react";

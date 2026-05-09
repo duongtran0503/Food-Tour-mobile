@@ -35,6 +35,7 @@ export default function SalesFood() {
         >
           {foods.map((food) => (
             <SmallFoodCard 
+            id={food.id}
               key={food.id}
               name={food.name}
               image={food.images[0]}

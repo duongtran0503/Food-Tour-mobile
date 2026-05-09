@@ -1,4 +1,4 @@
-import { foodService } from "@/servers/food-service";
+import { foodService } from "@/services/food-service";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 
