@@ -1,4 +1,12 @@
 {
+   
+  "tour_speech": {
+    "tour_welcome": "欢迎来到 {{title}}。{{description}}",
+    "stops_intro": "这个旅程包含 {{stopsCount}} 个停靠点，价格为 {{price}}，评分为 {{rating}} 星。",
+    "stop_item": "第 {{number}} 站是 {{place}}。这里的特色菜是 {{dish}}。{{description}}",
+    "error_title": "通知",
+    "pause_unsupported": "安卓设备目前不支持暂停功能。"
+  },    
   "common": {
     "welcome": "欢迎来到Foodie-VK！",
     "home": "首页",
@@ -6,7 +14,13 @@
     "settings": "设置",
     "logout": "退出登录",
     "back_to_home": "返回首页",
-    "loading": "加载中..."
+    "loading": "加载中...",
+    "confirm":{
+  "title": "确认",
+  "message": "您确定要注销吗？",
+  "cancel": "取消",
+  "confirm": "注销"
+}
   },
   "speech": {
   "welcome": "欢迎来到{{name}}。{{description}}",
@@ -20,6 +34,15 @@
       "title": "选择语言",
       "confirm": "确认更改"
     },
+    "tour_map_screen": {
+  "loading": "正在加载地图和旅游详情...",
+  "estimated_budget": "预估预算",
+  "stops": "停靠点",
+  "error": " Unable to load tour details. Please try again later.",
+  "address": "地址",
+  "price": "价格",
+  "detail_tour":"旅游详情"
+},
     "all_restaurants": {
       "header_title": "搜索结果",
       "search_placeholder": "搜索餐厅...",
@@ -114,6 +137,12 @@
     }
   },
   "components": {
+    "tour_speech": {
+      "start": "收听讲解",
+      "status_playing": "正在播放讲解",
+      "status_paused": "已暂停",
+      "playing": "旅程讲解"
+    },
     "customSidebar": {
       "profileSettings": "个人资料与设置",
       "study": "学习与培训",

@@ -1,4 +1,10 @@
 {
+   "tour_speech": {
+    "welcome": "Chào mừng bạn đến với {{title}}. {{description}}",
+    "overview": "Tour này bao gồm {{stopsCount}} điểm dừng chân với mức giá {{price}} và đánh giá {{rating}} sao.",
+    "stop_detail": "Điểm thứ {{number}}: {{place}}. Món đặc sản tại đây là {{dish}}. {{description}} ",
+    "conclusion": "Cảm ơn bạn đã lắng nghe về tour {{title}}. Chúc bạn có trải nghiệm tuyệt vời!"
+  },
  "common": {
     "welcome": "Chào mừng đến với Foodie-VK!",
     "home": "Trang Chủ",
@@ -6,7 +12,13 @@
     "settings": "Cài Đặt",
     "logout": "Đăng Xuất",
     "back_to_home": "Trở về trang chủ",
-    "loading": "Đang tải..."
+    "loading": "Đang tải...",
+    "confirm":{
+  "title": "Xác nhận",
+  "message": "Bạn có chắc chắn muốn đăng xuất không?",
+  "cancel": "Hủy bỏ",
+  "confirm": "Đăng xuất"
+}
   },
   "speech": {
     "welcome": "Chào mừng bạn đến với {{name}}. {{description}}",
@@ -20,6 +32,15 @@
       "title": "Chọn ngôn ngữ",
       "confirm": "Xác nhận thay đổi"
     },
+    "tour_map_screen": {
+  "loading": "Đang tải bản đồ và chi tiết tour...",
+  "estimated_budget": "Ngân sách dự kiến",
+  "stops": "điểm dừng",
+  "error": "Không thể tải chi tiết tour. Vui lòng thử lại sau.",
+  "address": "Địa chỉ",
+  "price": "Giá",
+  "detail_tour":"CHI TIẾT HÀNH TRÌNH"
+},
     "all_restaurants": {
       "header_title": "Kết quả tìm kiếm",
       "search_placeholder": "Tìm kiếm quán ăn...",

@@ -1,4 +1,11 @@
 {
+  "tour_speech": {
+    "tour_welcome": "{{title}} へようこそ",
+    "stops_intro": "旅は {{count}} つの見どころを巡ります",
+    "stop_item": "{{index}} 番目の停留所は {{place}} です。ここでは {{dish}} をお楽しみいただけます。{{desc}}",
+    "error_title": "お知らせ",
+    "pause_unsupported": "お使いのデバイスは音声の直接一時停止に対応していません。"
+  },
   "common": {
     "welcome": "Foodie-VKへようこそ！",
     "home": "ホーム",
@@ -6,7 +13,13 @@
     "settings": "設定",
     "logout": "ログアウト",
     "back_to_home": "ホームに戻る",
-    "loading": "読み込み中..."
+    "loading": "読み込み中...",
+    "confirm":{
+  "title": "確認",
+  "message": "ログアウトしてもよろしいですか？",
+  "cancel": "キャンセル",
+  "confirm": "ログアウト"
+}
   },
   "speech": {
   "welcome": "{{name}}へようこそ。{{description}}",
@@ -20,6 +33,15 @@
       "title": "言語を選択",
       "confirm": "変更を確認"
     },
+    "tour_map_screen": {
+  "loading": "地図とツアーの詳細を読み込み中...",
+  "estimated_budget": "推定予算",
+  "stops": "停留所",
+  "error": "ツアーの詳細を読み込めません。後でもう一度お試しください。",
+  "address": "住所",
+  "price": "価格",
+  "detail_tour":"ツアーの詳細"
+},
     "all_restaurants": {
       "header_title": "検索結果",
       "search_placeholder": "レストランを検索...",
@@ -114,6 +136,12 @@
     }
   },
   "components": {
+     "tour_speech": {
+      "start": "音声ガイドを聴く",
+      "status_playing": "音声ガイド再生中",
+      "status_paused": "一時停止中",
+      "playing": "ツアー音声ガイド"
+    },
     "customSidebar": {
       "profileSettings": "プロフィール & 設定",
       "study": "学習・研修",

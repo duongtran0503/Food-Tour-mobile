@@ -1,4 +1,11 @@
 {
+   "tour_speech": {
+    "tour_welcome": "Добро пожаловать в {{title}}",
+    "stops_intro": "Наше путешествие пройдёт через {{count}} интересных мест",
+    "stop_item": "Остановка {{index}} — {{place}}. Здесь вы попробуете {{dish}}. {{desc}}",
+    "error_title": "Уведомление",
+    "pause_unsupported": "Ваше устройство не поддерживает прямую паузу голосового воспроизведения."
+  },
   "common": {
     "welcome": "Добро пожаловать в Foodie-VK!",
     "home": "Главная",
@@ -6,7 +13,13 @@
     "settings": "Настройки",
     "logout": "Выйти",
     "back_to_home": "На главную",
-    "loading": "Загрузка..."
+    "loading": "Загрузка...",
+    "confirm":{
+  "title": "Подтверждение",
+  "message": "Вы уверены, что хотите выйти?",
+  "cancel": "Отмена",
+  "confirm": "Выйти"
+}
   },
   "speech": {
   "welcome": "Добро пожаловать в {{name}}. {{description}}",
@@ -19,6 +32,15 @@
     "language": {
       "title": "Выберите язык",
       "confirm": "Подтвердить изменение"
+    },
+    "tour_map_screen": {
+      "loading": "Загрузка карты и деталей тура...",
+      "estimated_budget": "Предполагаемый бюджет",
+      "stops": "точки остановки",
+      "error": "Не удалось загрузить детали тура. Пожалуйста, попробуйте позже.",
+      "address":"Адрес",
+      "price":"Цена"  ,
+      "detail_tour":"ДЕТАЛИ ТУРА"
     },
     "all_restaurants": {
       "header_title": "Результаты поиска",
@@ -114,6 +136,12 @@
     }
   },
   "components": {
+     "tour_speech": {
+      "start": "Слушать аудиогид",
+      "status_playing": "Воспроизведение аудиогида",
+      "status_paused": "Пауза",
+      "playing": "Аудиогид по туру"
+    },
     "customSidebar": {
       "profileSettings": "Профиль и настройки",
       "study": "Обучение и тренинги",

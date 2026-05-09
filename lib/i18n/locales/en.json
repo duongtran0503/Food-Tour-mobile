@@ -1,4 +1,14 @@
 {
+  
+  
+  "tour_speech": {
+    "tour_welcome": "Chào mừng bạn đến với {{title}}",
+    "stops_intro": "Hành trình của chúng ta sẽ đi qua {{count}} địa điểm đặc sắc",
+    "stop_item": "Điểm dừng thứ {{index}} là {{place}}. Tại đây bạn sẽ thưởng thức {{dish}}. {{desc}}",
+    "error_title": "Thông báo",
+    "pause_unsupported": "Thiết bị của bạn không hỗ trợ tạm dừng giọng nói trực tiếp."
+  }
+  ,
   "common": {
     "welcome": "Welcome to Foodie-VK!",
     "home": "Home",
@@ -6,8 +16,16 @@
     "settings": "Settings",
     "logout": "Logout",
     "back_to_home": "Back to home",
-    "loading": "Loading..."
+    "loading": "Loading...",
+    "confirm":{
+      "title": "Confirm",
+      "message": "Are you sure you want to log out?",
+      "cancel": "Cancel",
+      "confirm": "Log Out"
+    }
+
   },
+  
     "speech": {
     "welcome": "Welcome to {{name}}. {{description}}",
     "menu_intro": "The menu includes: ",
@@ -19,6 +37,15 @@
     "language": {
       "title": "Select Language",
       "confirm": "Confirm change"
+    },
+    "tour_map_screen": {
+      "loading": "Loading map and tour details...",
+      "estimated_budget": "Estimated Budget",
+      "stops": "stops",
+      "error": "Unable to load tour details. Please try again later.",
+      "address":"Address",
+      "price":"Price",
+      "detail_tour":"TOUR DETAILS"
     },
     "all_restaurants": {
       "header_title": "Search Results",
@@ -115,6 +142,12 @@
     }
   },
   "components": {
+    "tour_speech": {
+      "start": "Nghe thuyết trình",
+      "status_playing": "Đang phát thuyết minh",
+      "status_paused": "Đang tạm dừng",
+      "playing": "Hành trình tour"
+    },
     "customSidebar": {
       "profileSettings": "Profile & Settings",
       "study": "Study & Training",

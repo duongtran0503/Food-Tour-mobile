@@ -47,6 +47,9 @@ export default function RootLayout() {
               {/* Trang Bản đồ Tour */}
               <Stack.Screen name="tour/map/[id]" />
 
+              {/* Trang chia sẻ Tour */}
+              <Stack.Screen name="tour/share/[id]" />
+
               {/* Trang danh sách tất cả nhà hàng */}
               <Stack.Screen name="restaurant/all" />
 
