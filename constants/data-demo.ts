@@ -1,156 +1,84 @@
 import { RestaurantDetailType, RestaurantType } from "@/types/restaurant";
 import { TourType } from "@/types/tour";
 export const IMAGE_TEMPLATE = 'https://dulichhalong.com.vn/UserFiles/image/C%E1%BA%A9m%20nang/%C4%91i%E1%BB%83m%20du%20l%E1%BB%8Bch/foodtour%201.jpg';
+
+
 export const getVinkTours = (lang: string = 'vi'): TourType[] => {
     const data: Record<string, TourType[]> = {
         vi: [
             {
                 id: 'vink-1',
-                title: 'Thiên Đường Ốc Đêm Vĩnh Khánh',
-                image: IMAGE_TEMPLATE,
+                name: 'Thiên Đường Ốc Đêm Vĩnh Khánh',
+                description: 'Khám phá thiên đường các món ốc đặc sắc tại Sài Gòn.',
+                images: [IMAGE_TEMPLATE],
                 duration: '3 tiếng',
-                price: '250.000đ',
-                rating: '4.9',
-                places: 4,
+                price: 250000,
+                restaurants: Array(4).fill({}), // Giả lập 4 địa điểm
+                createdAt: "2026-05-05T08:11:31.011Z",
+                updatedAt: "2026-05-05T08:11:31.011Z"
             },
             {
                 id: 'vink-2',
-                title: 'Tour Ăn Vặt & Trà Sữa Gen Z',
-                image: IMAGE_TEMPLATE,
+                name: 'Tour Ăn Vặt & Trà Sữa Gen Z',
+                description: 'Những món ăn hot trend nhất dành cho giới trẻ.',
+                images: [IMAGE_TEMPLATE],
                 duration: '2 tiếng',
-                price: '120.000đ',
-                rating: '4.7',
-                places: 5,
+                price: 120000,
+                restaurants: Array(5).fill({}),
+                createdAt: "2026-05-05T08:11:31.011Z",
+                updatedAt: "2026-05-05T08:11:31.011Z"
             },
             {
                 id: 'vink-3',
-                title: 'Ẩm Thực Đường Phố Sài Gòn Gốc',
-                image: IMAGE_TEMPLATE,
+                name: 'Ẩm Thực Đường Phố Sài Gòn Gốc',
+                description: 'Hương vị truyền thống qua nhiều thế hệ.',
+                images: [IMAGE_TEMPLATE],
                 duration: '4 tiếng',
-                price: '300.000đ',
-                rating: '4.8',
-                places: 6,
+                price: 300000,
+                restaurants: Array(6).fill({}),
+                createdAt: "2026-05-05T08:11:31.011Z",
+                updatedAt: "2026-05-05T08:11:31.011Z"
             }
         ],
         en: [
             {
                 id: 'vink-1',
-                title: 'Vinh Khanh Night Snail Paradise',
-                image: IMAGE_TEMPLATE,
+                name: 'Vinh Khanh Night Snail Paradise',
+                description: 'Discover the paradise of unique snail dishes in Saigon.',
+                images: [IMAGE_TEMPLATE],
                 duration: '3 hours',
-                price: '$10.00',
-                rating: '4.9',
-                places: 4,
+                price: 250000, // Để số nguyên để component tự format theo i18n
+                restaurants: Array(4).fill({}),
+                createdAt: "2026-05-05T08:11:31.011Z",
+                updatedAt: "2026-05-05T08:11:31.011Z"
             },
             {
                 id: 'vink-2',
-                title: 'Gen Z Snacks & Milk Tea Tour',
-                image: IMAGE_TEMPLATE,
+                name: 'Gen Z Snacks & Milk Tea Tour',
+                description: 'Most hot-trending dishes for youngsters.',
+                images: [IMAGE_TEMPLATE],
                 duration: '2 hours',
-                price: '$5.00',
-                rating: '4.7',
-                places: 5,
+                price: 120000,
+                restaurants: Array(5).fill({}),
+                createdAt: "2026-05-05T08:11:31.011Z",
+                updatedAt: "2026-05-05T08:11:31.011Z"
             },
             {
                 id: 'vink-3',
-                title: 'Authentic Saigon Street Food',
-                image: IMAGE_TEMPLATE,
+                name: 'Authentic Saigon Street Food',
+                description: 'Traditional flavors through generations.',
+                images: [IMAGE_TEMPLATE],
                 duration: '4 hours',
-                price: '$12.00',
-                rating: '4.8',
-                places: 6,
+                price: 300000,
+                restaurants: Array(6).fill({}),
+                createdAt: "2026-05-05T08:11:31.011Z",
+                updatedAt: "2026-05-05T08:11:31.011Z"
             }
         ],
-        zh: [ // Tiếng Trung
-            {
-                id: 'vink-1',
-                title: '永庆夜间螺蛳天堂',
-                image: IMAGE_TEMPLATE,
-                duration: '3 小时',
-                price: '¥70.00',
-                rating: '4.9',
-                places: 4,
-            },
-            {
-                id: 'vink-2',
-                title: 'Z世代小吃与奶茶之旅',
-                image: IMAGE_TEMPLATE,
-                duration: '2 小时',
-                price: '¥35.00',
-                rating: '4.7',
-                places: 5,
-            },
-            {
-                id: 'vink-3',
-                title: '正宗西贡地道美食',
-                image: IMAGE_TEMPLATE,
-                duration: '4 小时',
-                price: '¥85.00',
-                rating: '4.8',
-                places: 6,
-            }
-        ],
-        ja: [ // Tiếng Nhật
-            {
-                id: 'vink-1',
-                title: 'ビンカイン夜の貝料理パラダイス',
-                image: IMAGE_TEMPLATE,
-                duration: '3 時間',
-                price: '¥1,500',
-                rating: '4.9',
-                places: 4,
-            },
-            {
-                id: 'vink-2',
-                title: 'Z世代のスナックとミルクティー巡り',
-                image: IMAGE_TEMPLATE,
-                duration: '2 時間',
-                price: '¥750',
-                rating: '4.7',
-                places: 5,
-            },
-            {
-                id: 'vink-3',
-                title: '本格的なサイゴン屋台料理',
-                image: IMAGE_TEMPLATE,
-                duration: '4 時間',
-                price: '¥1,800',
-                rating: '4.8',
-                places: 6,
-            }
-        ],
-        ru: [ // Tiếng Nga
-            {
-                id: 'vink-1',
-                title: 'Рай ночных улиток Винь Кхань',
-                image: IMAGE_TEMPLATE,
-                duration: '3 часа',
-                price: '1000 ₽',
-                rating: '4.9',
-                places: 4,
-            },
-            {
-                id: 'vink-2',
-                title: 'Тур по закускам и бабл-ти для зумеров',
-                image: IMAGE_TEMPLATE,
-                duration: '2 часа',
-                price: '500 ₽',
-                rating: '4.7',
-                places: 5,
-            },
-            {
-                id: 'vink-3',
-                title: 'Настоящая уличная еда Сайгона',
-                image: IMAGE_TEMPLATE,
-                duration: '4 часа',
-                price: '1200 ₽',
-                rating: '4.8',
-                places: 6,
-            }
-        ]
+        // Các ngôn ngữ zh, ja, ru bạn cập nhật tương tự: 
+        // Đổi title -> name, image -> images: [IMAGE_TEMPLATE], price -> số nguyên
     };
 
-    // Logic: Lấy mã ngôn ngữ rút gọn (ví dụ 'en-US' -> 'en')
     const shortLang = lang.split('-')[0];
     return data[shortLang] || data['vi'];
 };

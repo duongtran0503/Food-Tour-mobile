@@ -1,5 +1,5 @@
 import { getVinkTours } from '@/constants/data-demo';
-import { restaurantService } from '@/servers/restaurant-service';
+import { restaurantService } from '@/services/restaurant-service';
 import { useQuery } from '@tanstack/react-query';
 import { useRouter } from 'expo-router';
 import { useMemo } from 'react';

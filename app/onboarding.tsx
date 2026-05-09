@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next'; // 1. Import i18n
@@ -9,11 +10,13 @@ export default function OnboardingScreen() {
   const { t } = useTranslation(); 
   const [step, setStep] = useState(1);
 
+
   const handleNext = async () => {
     if (step < 3) {
       setStep(step + 1);
     } else {
-      router.replace('/(auth)/login');
+      await AsyncStorage.setItem('hasLaunched', 'true');
+      router.replace('/login');
     }
   };
 

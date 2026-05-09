@@ -1,11 +1,13 @@
+import { userService } from '@/services/user-service';
 import { Ionicons } from '@expo/vector-icons';
 import { DrawerContentComponentProps, DrawerContentScrollView } from '@react-navigation/drawer';
+import { useQuery } from '@tanstack/react-query';
 import { useRouter } from 'expo-router';
+import * as SecureStore from 'expo-secure-store';
 import React from 'react';
 import { useTranslation } from 'react-i18next'; // 1. Import hook dịch
-import { Image, Text, TouchableOpacity, View } from 'react-native';
+import { Alert, Image, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-
 interface MenuItemProps {
   icon: keyof typeof Ionicons.glyphMap;
   label: string;
@@ -32,10 +34,41 @@ export default function CustomDrawerContent(props: DrawerContentComponentProps) 
   const router = useRouter();
   const { t } = useTranslation(); 
 
-  const handleSignOut = () => {
-    console.log("Đang đăng xuất...");
-    props.navigation.closeDrawer(); 
-    router.replace('/(auth)/login'); 
+  const { data: response } = useQuery({ 
+    queryKey: ['userProfile'], 
+    queryFn: userService.getProfile 
+  });
+  const userData = response;
+
+ const handleSignOut = () => {
+    // 2. Thêm hộp thoại xác nhận để tránh bấm nhầm
+    Alert.alert(
+      t('common.confirm.title'), // Tiêu đề: "Đăng xuất"
+      t('common.confirm.message'), // Nội dung: "Bạn có chắc chắn muốn thoát?"
+      [
+        { text: t('common.confirm.cancel'), style: 'cancel' },
+        { 
+          text: t('common.confirm.confirm'), 
+          style: 'destructive',
+          onPress: async () => {
+            try {
+              console.log("Đang xóa token...");
+              
+              // 3. XÓA TOKEN KHỎI BỘ NHỚ
+              await SecureStore.deleteItemAsync('userToken');
+
+              // 4. Đóng Drawer trước khi chuyển hướng
+              props.navigation.closeDrawer(); 
+
+              // 5. Điều hướng về trang login (Dùng replace để xóa lịch sử Stack)
+              router.replace('/(auth)/login'); 
+            } catch (error) {
+              console.error("Lỗi khi đăng xuất:", error);
+            }
+          } 
+        },
+      ]
+    );
   };
 
   return (
@@ -49,14 +82,14 @@ export default function CustomDrawerContent(props: DrawerContentComponentProps) 
             resizeMode="cover"
           />
         </View>
-        <Text className="text-2xl font-extrabold text-slate-950 tracking-tight">Trần Dương</Text>
-        <Text className="text-sm text-slate-500 mt-1 mb-5">duong@foodvk.com</Text>
+        <Text className="text-2xl font-extrabold text-slate-950 tracking-tight">{userData?.fullName}</Text>
+        <Text className="text-sm text-slate-500 mt-1 mb-5">{userData?.email}</Text>
         
         <TouchableOpacity 
           className="bg-slate-100 px-6 py-3 rounded-full active:bg-slate-200"
           onPress={() => {
             props.navigation.closeDrawer();
-            router.push('/(tabs)/home'); 
+            router.push('/profile'); 
           }}
         >
           <Text className="text-slate-900 font-bold text-sm">

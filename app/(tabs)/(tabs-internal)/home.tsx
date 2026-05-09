@@ -1,10 +1,8 @@
-import FoodTourCard from '@/components/food-tour-card';
 import FoodForYou from '@/components/home-component/food-for-you';
 import SalesFood from '@/components/home-component/sales-food';
-import LoadingFullScreen from '@/components/loading-full-screen';
+import HomeToursSection from '@/components/home-tour-section';
 import RestaurantCard from '@/components/restaurant-card';
 import SearchBar from '@/components/search-bar';
-import { getVinkTours } from '@/constants/data-demo';
 import { useHome } from '@/hooks/useHome';
 import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
@@ -14,16 +12,11 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 export default function HomeScreen() {
   const  {
         t,
-        i18n,
         router,
         restaurants,
         categoryData,
-        isLoading,
-         fetchRestaurants
     } = useHome()
-  if (isLoading) {
-    return <LoadingFullScreen visible={true} message={t('common.loading')} />;
-  }
+  
   return (
     <View className="flex-1 bg-white">
       <StatusBar barStyle="light-content" />
@@ -85,19 +78,7 @@ export default function HomeScreen() {
             </ScrollView>
           </View>
           {/* Chuyến đi */}
-          <View className="mb-4">
-            <View className="flex-row items-center py-2 px-4">
-               <Ionicons name="flame" size={24} color="#ef4444" /> 
-               <Text className="ml-2 font-bold text-lg">{t('screens.home.tour_list')}</Text>
-            </View>
-            <ScrollView horizontal showsHorizontalScrollIndicator={false} className="pl-2">
-              {getVinkTours(i18n.language).map((tour) => (
-                <View key={tour.id} className="mr-4">
-                  <FoodTourCard tour={tour} />
-                </View>
-              ))}
-            </ScrollView>
-          </View>
+           <HomeToursSection/>
           {/* Quán ăn nổi tiếng */}
           <View className="mb-4">
             <View className="flex-row items-center justify-between px-4 py-2 mb-2">
