@@ -5,5 +5,13 @@ export const apiEndpoints = {
     },
     foods: {
         getLIst: '/foods'
+    },
+    auth: {
+        login: '/auth/login',
+        register: '/auth/register'
+    },
+    user: {
+        getProfile: '/users/profile',
+        updateProfile: "/users/update/profile"
     }
 };

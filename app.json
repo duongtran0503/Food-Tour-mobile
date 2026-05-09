@@ -5,7 +5,7 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "foodietourfrontendmobile",
+    "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
@@ -13,29 +13,42 @@
     },
     "android": {
       "permissions": [
-    "ACCESS_COARSE_LOCATION",
-    "ACCESS_FINE_LOCATION"
-  ],
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION"
+      ],
+      "intentFilters": [
+        {
+          "action": "VIEW",
+          "data": {
+            "scheme": "https",
+            "host": "foodtour.com",
+            "pathPrefix": "/tour/detail/:id"
+          },
+          "category": [
+            "BROWSABLE",
+            "DEFAULT"
+          ]
+        }
+      ],
       "config": {
         "googleMaps": {
           "apiKey": "AIzaSyAabNPF1D3cXDdSBgBkyfcz3jqJ3kG2kKI"
         }
       },
+      "package": "com.foodvk.mobile",
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
         "backgroundImage": "./assets/images/android-icon-background.png",
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
-     
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false,
-       
+      "predictiveBackGestureEnabled": false
     },
     "web": {
       "output": "static",
       "favicon": "./assets/images/favicon.png",
-       "bundler": "metro"
+      "bundler": "metro"
     },
     "plugins": [
       "expo-router",
@@ -50,12 +63,19 @@
             "backgroundColor": "#000000"
           }
         }
-      ]
+      ],
+      "expo-branch",
+      "expo-secure-store"
     ],
     "experiments": {
       "typedRoutes": true,
-      "reactCompiler": true,
-    
+      "reactCompiler": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "6b7876c9-c9c7-4321-956f-d5876abdb5e2"
+      }
     }
   }
 }
