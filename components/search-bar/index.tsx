@@ -1,8 +1,14 @@
+import apiClient from "@/config/axios-config"; // Đảm bảo bạn đã có axios config
+import { useDebounce } from "@/hooks/useDebounce"; // Hook để trì hoãn gọi API
 import { Ionicons } from "@expo/vector-icons";
+import { useQuery } from "@tanstack/react-query";
+import { useRouter } from "expo-router";
 import React, { useState } from "react";
-import { useTranslation } from 'react-i18next'; // 1. Import hook
+import { useTranslation } from 'react-i18next';
 import {
+  ActivityIndicator,
   FlatList,
+  Image,
   Modal,
   Text,
   TextInput,
@@ -12,20 +18,29 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function SearchBar() {
-  const { t } = useTranslation(); // 2. Khởi tạo hàm t()
+  const { t } = useTranslation();
   const [isSearching, setIsSearching] = useState(false);
   const [searchText, setSearchText] = useState("");
+  const router = useRouter()
+  
+  // Debounce text: Chỉ trigger API sau khi người dùng ngừng gõ 500ms
+  const debouncedSearchTerm = useDebounce(searchText, 500);
 
-  const suggestions = [
-    { id: '1', title: 'Ốc Đào', area: 'Vĩnh Khánh' },
-    { id: '2', title: 'Ốc Oanh', area: 'Vĩnh Khánh' },
-    { id: '3', title: 'Phở Lệ', area: 'Vĩnh Khánh' },
-    { id: '4', title: 'Bánh mì Huỳnh Hoa', area: 'Quận 1' },
-  ];
+  // Gọi API tìm kiếm
+  const { data, isLoading, isFetching } = useQuery({
+    queryKey: ['searchRestaurants', debouncedSearchTerm],
+    queryFn: async () => {
+      if (!debouncedSearchTerm) return null;
+      const response = await apiClient.get(
+        `/restaurants?page=1&limit=10&search=${debouncedSearchTerm}`
+      );
+      return response.data;
+    },
+    enabled: debouncedSearchTerm.length > 0,
+  });
 
-  const filteredData = suggestions.filter(item => 
-    item.title.toLowerCase().includes(searchText.toLowerCase())
-  );
+  const restaurants = data?.items || [];
+  console.log("Search results:", data); // Debug log để kiểm tra dữ liệu nhận được
 
   return (
     <View>
@@ -44,10 +59,10 @@ export default function SearchBar() {
         </View>
       </TouchableOpacity>
 
-      {/* 2. Giao diện Tìm kiếm khi Focus (Modal) */}
+      {/* 2. Giao diện Tìm kiếm thực tế */}
       <Modal 
         visible={isSearching} 
-        animationType="fade" 
+        animationType="slide" 
         onRequestClose={() => setIsSearching(false)}
       >
         <SafeAreaView className="flex-1 bg-white">
@@ -65,7 +80,8 @@ export default function SearchBar() {
                 value={searchText}
                 onChangeText={setSearchText}
               />
-              {searchText.length > 0 && (
+              {(isLoading || isFetching) && <ActivityIndicator size="small" color="#930004" className="mr-2" />}
+              {searchText.length > 0 && !isLoading && (
                 <TouchableOpacity onPress={() => setSearchText("")}>
                   <Ionicons name="close-circle" size={18} color="#94a3b8" />
                 </TouchableOpacity>
@@ -74,35 +90,48 @@ export default function SearchBar() {
           </View>
 
           <View className="flex-1">
-            <TouchableOpacity className="flex-row items-center px-5 py-4 border-b border-slate-50">
-              <Ionicons name="location-outline" size={20} color="#64748b" />
-              <Text className="ml-3 text-slate-700 font-bold">
-                {t('components.searchBar.use_location')}
-              </Text>
-            </TouchableOpacity>
-
-            <Text className="px-5 pt-4 pb-2 text-xs font-bold text-slate-400 uppercase tracking-widest">
-              {t('components.searchBar.suggestions_title')}
-            </Text>
-
             <FlatList
-              data={filteredData}
+              data={restaurants}
               keyExtractor={(item) => item.id}
+              contentContainerStyle={{ paddingBottom: 20 }}
               renderItem={({ item }) => (
-                <TouchableOpacity className="flex-row items-center px-5 py-4 border-b border-slate-50 active:bg-slate-50">
-                  <Ionicons name="restaurant-outline" size={20} color="#cbd5e1" />
-                  <View className="ml-4">
-                    <Text className="text-slate-800 font-semibold text-base">{item.title}</Text>
-                    <Text className="text-slate-500 text-xs">
-                      {item.area}, {t('components.searchBar.suffix_country')}
+                <TouchableOpacity
+                onPress={()=> router.push({ pathname: "/restaurant/detail/[id]", params: { id: item.id } })}
+                className="flex-row items-center px-5 py-4 border-b border-slate-50 active:bg-slate-50">
+                  <Image 
+                    source={{ uri: item.images[0] }} 
+                    className="w-12 h-12 rounded-lg bg-slate-200"
+                    
+                  />
+                  <View className="ml-4 flex-1">
+                    <View className="flex-row justify-between items-center">
+                      <Text className="text-slate-800 font-bold text-base">{item.name}</Text>
+                      <View className="flex-row items-center">
+                        <Ionicons name="star" size={12} color="#fbbf24" />
+                        <Text className="text-xs ml-1 text-slate-600 font-bold">{item.rating}</Text>
+                      </View>
+                    </View>
+                    <Text numberOfLines={1} className="text-slate-500 text-xs mt-1">
+                      {item.address}
+                    </Text>
+                    <Text className="text-[10px] text-primary font-bold mt-1 uppercase italic">
+                      {item.openingTime}
                     </Text>
                   </View>
                 </TouchableOpacity>
               )}
+              ListHeaderComponent={() => (
+                 <Text className="px-5 pt-4 pb-2 text-xs font-bold text-slate-400 uppercase tracking-widest">
+                  {debouncedSearchTerm ? t('components.searchBar.results_title') : t('components.searchBar.suggestions_title')}
+                </Text>
+              )}
               ListEmptyComponent={() => (
-                <View className="items-center mt-10">
-                  <Text className="text-slate-400 italic">
-                    {t('components.searchBar.no_results')}
+                <View className="items-center mt-10 px-10">
+                  <Ionicons name="search-outline" size={48} color="#cbd5e1" />
+                  <Text className="text-slate-400 italic text-center mt-4">
+                    {debouncedSearchTerm 
+                      ? t('components.searchBar.no_results') 
+                      : t('components.searchBar.start_typing')}
                   </Text>
                 </View>
               )}
