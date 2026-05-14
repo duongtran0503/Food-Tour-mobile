@@ -17,18 +17,32 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import MapView, { Marker, Polyline, PROVIDER_GOOGLE } from 'react-native-maps';
+
+// BƯỚC 1: Xóa bỏ dòng import 'react-native-maps' gốc
+// Thay thế bằng khai báo biến động cho các components của bản đồ
+let MapView: any = View;
+let Marker: any = View;
+let Polyline: any = View;
+let PROVIDER_GOOGLE: any = null;
+
+// BƯỚC 2: Chỉ require thư viện bản đồ khi nền tảng KHÔNG PHẢI là trình duyệt Web
+if (Platform.OS !== 'web') {
+  const Maps = require('react-native-maps');
+  MapView = Maps.default;
+  Marker = Maps.Marker;
+  Polyline = Maps.Polyline;
+  PROVIDER_GOOGLE = Maps.PROVIDER_GOOGLE;
+}
 
 const { height: screenHeight } = Dimensions.get('window');
 
 export default function TourMapScreen() {
-  const mapRef = useRef<MapView>(null);
+  const mapRef = useRef<any>(null); // Sửa type lại thành any để tránh lỗi TypeScript khi chạy web
   const { id } = useLocalSearchParams();
   const { t } = useTranslation();
   const [expanded, setExpanded] = useState(false);
   const [footerHeight, setFooterHeight] = useState(screenHeight * 0.4);
 
-  // 1. Sửa lỗi fetch: Đảm bảo lấy đúng object tour từ response
   const { data: tourData, isLoading, isError, error } = useQuery({
     queryKey: ['tourDetail', id],
     queryFn: async () => {
@@ -43,10 +57,9 @@ export default function TourMapScreen() {
     enabled: !!id,
     retry: 1,
   });
-const { isSpeaking, isPaused, handleStart, handlePauseResume, handleStop } = useTourSpeech(tourData);
-  
 
-  // 2. Chuyển đổi dữ liệu stops thành tọa độ an toàn cho Polyline và Map
+  const { isSpeaking, isPaused, handleStart, handlePauseResume, handleStop } = useTourSpeech(tourData);
+
   const coordinates = useMemo(() => {
     if (!tourData?.stops || !Array.isArray(tourData.stops)) return [];
     return tourData.stops
@@ -57,9 +70,9 @@ const { isSpeaking, isPaused, handleStart, handlePauseResume, handleStop } = use
       .filter((c: any) => !isNaN(c.latitude) && !isNaN(c.longitude));
   }, [tourData]);
 
-  // 3. Tự động căn chỉnh bản đồ
   useEffect(() => {
-    if (coordinates.length > 0 && mapRef.current) {
+    // Chỉ gọi hàm fitToCoordinates khi đang ở trên App (Platform.OS !== 'web')
+    if (Platform.OS !== 'web' && coordinates.length > 0 && mapRef.current?.fitToCoordinates) {
       const timer = setTimeout(() => {
         mapRef.current?.fitToCoordinates(coordinates, {
           edgePadding: { top: 80, right: 50, bottom: footerHeight + 20, left: 50 },
@@ -89,59 +102,68 @@ const { isSpeaking, isPaused, handleStart, handlePauseResume, handleStop } = use
 
   return (
     <View style={styles.container}>
-      {/* BẢN ĐỒ */}
-      <MapView
-        ref={mapRef}
-        provider={PROVIDER_GOOGLE}
-        style={StyleSheet.absoluteFillObject}
-        initialRegion={{
-          latitude: coordinates[0]?.latitude || 10.762622,
-          longitude: coordinates[0]?.longitude || 106.706053,
-          latitudeDelta: 0.02,
-          longitudeDelta: 0.02,
-        }}
-      >
-        {/* MARKERS */}
-        {tourData.stops?.map((loc: any, index: number) => {
-          const lat = Number(loc.location?.latitude);
-          const lng = Number(loc.location?.longitude);
-          if (isNaN(lat) || isNaN(lng)) return null;
+      {/* BƯỚC 3: Xử lý hiển thị dựa trên nền tảng */}
+      {Platform.OS === 'web' ? (
+        // Nếu là Web, hiển thị một cái view xám thông báo thay vì gọi MapView
+        <View style={[StyleSheet.absoluteFillObject, styles.webFallback]}>
+          <Text style={styles.webFallbackText}>Bản đồ không hỗ trợ trên trình duyệt Web.</Text>
+          <Text style={styles.webFallbackSubText}>Vui lòng mở ứng dụng trên điện thoại để xem hành trình.</Text>
+        </View>
+      ) : (
+        // BẢN ĐỒ - Nếu là Mobile (Android/iOS) thì hiển thị bình thường
+        <MapView
+          ref={mapRef}
+          provider={PROVIDER_GOOGLE}
+          style={StyleSheet.absoluteFillObject}
+          initialRegion={{
+            latitude: coordinates[0]?.latitude || 10.762622,
+            longitude: coordinates[0]?.longitude || 106.706053,
+            latitudeDelta: 0.02,
+            longitudeDelta: 0.02,
+          }}
+        >
+          {/* MARKERS */}
+          {tourData.stops?.map((loc: any, index: number) => {
+            const lat = Number(loc.location?.latitude);
+            const lng = Number(loc.location?.longitude);
+            if (isNaN(lat) || isNaN(lng)) return null;
 
-          return (
-            <Marker
-              key={`marker-${loc.id || index}`}
-              coordinate={{ latitude: lat, longitude: lng }}
-              tracksViewChanges={false}
-            >
-              <View style={styles.markerContainer}>
-                <View style={styles.markerCard}>
-                  <Image
-                    source={{ uri: loc.image || 'https://via.placeholder.com/150' }}
-                    style={styles.markerImage}
-                  />
-                  <View style={styles.markerInfo}>
-                    <Text numberOfLines={1} style={styles.markerPlaceName}>{loc.place}</Text>
-                    <Text numberOfLines={1} style={styles.markerDishName}>{loc.dish}</Text>
-                    <View style={styles.pointBadge}>
-                      <Text style={styles.pointText}>ĐIỂM {index + 1}</Text>
+            return (
+              <Marker
+                key={`marker-${loc.id || index}`}
+                coordinate={{ latitude: lat, longitude: lng }}
+                tracksViewChanges={false}
+              >
+                <View style={styles.markerContainer}>
+                  <View style={styles.markerCard}>
+                    <Image
+                      source={{ uri: loc.image || 'https://via.placeholder.com/150' }}
+                      style={styles.markerImage}
+                    />
+                    <View style={styles.markerInfo}>
+                      <Text numberOfLines={1} style={styles.markerPlaceName}>{loc.place}</Text>
+                      <Text numberOfLines={1} style={styles.markerDishName}>{loc.dish}</Text>
+                      <View style={styles.pointBadge}>
+                        <Text style={styles.pointText}>ĐIỂM {index + 1}</Text>
+                      </View>
                     </View>
                   </View>
+                  <View style={styles.arrowDown} />
                 </View>
-                <View style={styles.arrowDown} />
-              </View>
-            </Marker>
-          );
-        })}
+              </Marker>
+            );
+          })}
 
-        {/* POLYLINE */}
-        {coordinates.length > 1 && (
-          <Polyline
-            coordinates={coordinates}
-            strokeColor="#930004"
-            strokeWidth={3}
-          />
-        )}
-      </MapView>
+          {/* POLYLINE */}
+          {coordinates.length > 1 && (
+            <Polyline
+              coordinates={coordinates}
+              strokeColor="#930004"
+              strokeWidth={3}
+            />
+          )}
+        </MapView>
+      )}
 
       {/* HEADER */}
       <View style={styles.header}>
@@ -171,14 +193,14 @@ const { isSpeaking, isPaused, handleStart, handlePauseResume, handleStop } = use
           bounces={true}
         >
           <View className="my-4 px-4">
-     <SpeechControls 
-        isSpeaking={isSpeaking}
-        isPaused={isPaused}
-        onStart={handleStart}
-        onPauseResume={handlePauseResume}
-        onStop={handleStop}
-      />
-  </View>
+            <SpeechControls 
+              isSpeaking={isSpeaking}
+              isPaused={isPaused}
+              onStart={handleStart}
+              onPauseResume={handlePauseResume}
+              onStop={handleStop}
+            />
+          </View>
           {/* Header Info */}
           <View style={styles.footerRow}>
             <Image 
@@ -255,6 +277,22 @@ const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#fff' },
   loadingContainer: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff' },
   loadingText: { marginTop: 10, color: '#64748b', fontWeight: 'bold' },
+  
+  webFallback: {
+    backgroundColor: '#e2e8f0',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  webFallbackText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#334155',
+  },
+  webFallbackSubText: {
+    fontSize: 14,
+    color: '#64748b',
+    marginTop: 8,
+  },
   
   header: { 
     position: 'absolute', 

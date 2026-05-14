@@ -3,10 +3,12 @@ import i18n from "@/lib/i18n";
 import { config } from "@gluestack-ui/config";
 import { GluestackUIProvider } from "@gluestack-ui/themed";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { Stack } from "expo-router"; // Chuyển từ Drawer sang Stack
+import { Stack } from "expo-router";
+import { useEffect } from "react"; // THÊM IMPORT
 import { I18nextProvider } from "react-i18next";
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { configureReanimatedLogger, ReanimatedLogLevel } from "react-native-reanimated";
+import { io } from "socket.io-client"; // THÊM IMPORT
 
 const queryClient = new QueryClient();
 
@@ -16,51 +18,47 @@ configureReanimatedLogger({
 });
 
 export default function RootLayout() {
+  
+  // TỰ ĐỘNG KẾT NỐI SOCKET KHI MỞ APP
+  useEffect(() => {
+    // FIX: Tách riêng URL Socket, KHÔNG ĐƯỢC có /api/v1 ở cuối
+    // Bạn nên kiểm tra file .env xem EXPO_PUBLIC_API_URL có bị dư /api/v1 không
+    const socketUrl = 'http://192.168.1.13:8080'; 
+    
+    const socket = io(socketUrl, {
+      transports: ['websocket'],
+    });
+    
+    socket.on('connect', () => {
+      console.log('App đã kết nối Socket ID:', socket.id);
+    });
+
+    socket.on('connect_error', (err) => {
+      console.log('Lỗi kết nối Socket Mobile:', err.message);
+    });
+
+    return () => {
+      socket.disconnect(); 
+    };
+  }, []);
+
   return (
     <I18nextProvider i18n={i18n}>
       <QueryClientProvider client={queryClient}>
         <GluestackUIProvider config={config}>
           <GestureHandlerRootView style={{ flex: 1 }}>
-            
-            {/* Sử dụng Stack để quản lý các folder con */}
-            <Stack
-              screenOptions={{
-                headerShown: false, // Ẩn header mặc định để dùng header tự chế của mình
-              
-              }}
-            >
-              {/* Màn hình Splash/Index */}
+            <Stack screenOptions={{ headerShown: false }}>
               <Stack.Screen name="index" />
-
-              {/* Nhóm Tabs (Home, Search, v.v.) */}
               <Stack.Screen name="(tabs)" />
-
-              {/* Trang chi tiết Tour */}
               <Stack.Screen name="tour/detail/[id]" />
-              
-              {/* Trang chi tiết Nhà hàng */}
               <Stack.Screen name="restaurant/detail/[id]" />
-
-              {/* Trang chi tiết Món ăn */}
               <Stack.Screen name="food/detail/[id]" />
-
-              {/* Trang Bản đồ Tour */}
               <Stack.Screen name="tour/map/[id]" />
-
-              {/* Trang chia sẻ Tour */}
               <Stack.Screen name="tour/share/[id]" />
-
-              {/* Trang danh sách tất cả nhà hàng */}
               <Stack.Screen name="restaurant/all" />
-
-              {/* Nhóm Đăng nhập / Đăng ký */}
               <Stack.Screen name="(auth)" />
-
-              {/* Trang hướng dẫn (nếu có) */}
               <Stack.Screen name="onboarding" />
-              
             </Stack>
-
           </GestureHandlerRootView>
         </GluestackUIProvider>
       </QueryClientProvider>
