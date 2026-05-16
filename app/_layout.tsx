@@ -14,21 +14,21 @@ const queryClient = new QueryClient();
 
 configureReanimatedLogger({
   level: ReanimatedLogLevel.warn,
-  strict: false, 
+  strict: false,
 });
 
 export default function RootLayout() {
-  
+
   // TỰ ĐỘNG KẾT NỐI SOCKET KHI MỞ APP
   useEffect(() => {
     // FIX: Tách riêng URL Socket, KHÔNG ĐƯỢC có /api/v1 ở cuối
     // Bạn nên kiểm tra file .env xem EXPO_PUBLIC_API_URL có bị dư /api/v1 không
-    const socketUrl = 'http://192.168.1.13:8080'; 
-    
+    const socketUrl = 'http://192.168.31.9:8080';
+
     const socket = io(socketUrl, {
       transports: ['websocket'],
     });
-    
+
     socket.on('connect', () => {
       console.log('App đã kết nối Socket ID:', socket.id);
     });
@@ -38,7 +38,7 @@ export default function RootLayout() {
     });
 
     return () => {
-      socket.disconnect(); 
+      socket.disconnect();
     };
   }, []);
 
